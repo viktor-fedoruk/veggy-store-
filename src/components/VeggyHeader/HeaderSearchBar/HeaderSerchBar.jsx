@@ -1,5 +1,5 @@
 import './HeaderSearchBar.css'
-import arrow from './../../../img/back.png';
+import arrow from '../../../../public/img/back.png';
 export default function HeaderSearchBar (props) {
     return (
         <div className='search_row'>

@@ -1,4 +1,4 @@
-import LogoImg from '../../../img/VeggyLogo.png'
+import LogoImg from '../../../../public/img/VeggyLogo.png'
 import './HeaderLogo.css'
 export default function HeaderLogo () {
     return (

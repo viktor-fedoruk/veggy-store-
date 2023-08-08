@@ -1,5 +1,5 @@
 import './CartList.css'
-import cartListImg from './../../../../img/empty-cart.png'
+import cartListImg from '../../../../../public/img/empty-cart.png'
 import '../HeaderCart.css'
 
 export  default function CartList ({modalActive, addProduct,setAddProduct}) {

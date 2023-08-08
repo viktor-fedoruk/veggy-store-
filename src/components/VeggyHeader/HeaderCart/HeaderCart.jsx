@@ -1,4 +1,4 @@
-import CartImg from "../../../img/cart.png"
+import CartImg from "../../../../public/img/cart.png"
 import './HeaderCart.css'
 import CartList from "./CartList/CartList.jsx";
 import useWidth from "../../../../hooks/useWindowResize.js";
