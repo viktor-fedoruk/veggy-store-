@@ -16,7 +16,7 @@ function App() {
         setInputText(e.target.value)
     }
 
-
+    console.log('test');
 
     useEffect(() => {
         async function getProduct () {
