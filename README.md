@@ -1,17 +1,19 @@
 ﻿# veggy-store-
 
- A simple shopping store.  React + JSON.Server.
+ A simple shopping store.  
+ Frontend: React, Backend: JSON.Server.
  
-Getting started
-
-In order to start the whole project, it is necessary first need clone all project, and then start localhost:
-
+Getting started: 
+1) Clone repo: 
 git clone https://github.com/viktor-fedoruk/veggy-store-.git
 
-cd my-react-project
+2) Activate web server: 
+json-server .\my-react-project\data\db.json -p 3001
 
+3) Navigate to the root folder of the project:
+cd veggy-store-
+
+4) Activate frontend in dev mode:
 npm run dev
 
-After that, you need to start Json-Server:
-
-json-server .\my-react-project\data\db.json -p 3001
+Enjoy! =)
