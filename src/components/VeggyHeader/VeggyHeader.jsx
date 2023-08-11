@@ -1,9 +1,9 @@
-import './VeggyHeader.css'
+import { useEffect, useState } from "react";
+import useWidth from "../../../hooks/useWindowResize.js";
 import HeaderLogo from "./HeaderLogo/HeaderLogo.jsx";
 import HeaderSearchBar from "./HeaderSearchBar/HeaderSerchBar.jsx";
 import HeaderCart from "./HeaderCart/HeaderCart.jsx";
-import {useEffect, useState} from "react";
-import useWidth from "../../../hooks/useWindowResize.js";
+import './VeggyHeader.css'
 
 export default function Header (props) {
     const [isOpenSearchBar, setIsOpenSearchBar] = useState(true);
@@ -16,7 +16,7 @@ export default function Header (props) {
       }
     }, [width]);
 
-    function setInputOnClick (e) {
+    function setInputOnClick () {
         if (isMobile) {
             setIsOpenSearchBar(true);
         }
@@ -24,23 +24,23 @@ export default function Header (props) {
 
     return (
         <>
-            <div className='header' >
-                <div className='header_container'>
-                    <div className='header_row'>
+            <div className="header" >
+                <div className="header_container">
+                    <div className="header_row">
                         {(!isMobile || isMobile && !isOpenSearchBar) && <HeaderLogo/>}
                         <HeaderSearchBar
                             width={width}
                             onSetOpenSearchBar={setIsOpenSearchBar}
                             isOpenSearchBar={isOpenSearchBar}
                             setInputOnClick={setInputOnClick}
-                            getInputValue={props.getInputValue}
+                            handleGetInputValue={props.handleGetInputValue}
                         />
                         {(!isMobile || isMobile && !isOpenSearchBar) && <HeaderCart
-                            modalActive={props.modalActive}
-                            setModalActive={props.setModalActive}
+                            isModalActive={props.isModalActive}
+                            setIsModalActive={props.setIsModalActive}
                             products={props.products}
-                            addProduct={props.addProduct}
-                            setAddProduct={props.setAddProduct}
+                            selectedProducts={props.selectedProducts}
+                            setSelectedProducts={props.setSelectedProducts}
                             setShakingCart={props.setShakingCart}
                             shakingCart={props.shakingCart}
                         />}

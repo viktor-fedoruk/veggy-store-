@@ -1,10 +1,10 @@
-export default function ModalProductItemImage({modalActive, setModalActive, children}) {
+export default function ModalProductItemImage({ setModalActive, children }) {
     return (
         <div
             onClick={() => setModalActive(false)}
-            className='modalWatchProductContainer'>
+            className="modalWatchProductContainer">
             <div
-                className='modalWatchProductRow'>
+                className="modalWatchProductRow">
                     {children}
             </div>
         </div>

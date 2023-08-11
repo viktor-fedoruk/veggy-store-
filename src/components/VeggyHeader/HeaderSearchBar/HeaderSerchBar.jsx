@@ -1,28 +1,28 @@
-import './HeaderSearchBar.css'
-import arrow from '../../../../public/img/back.png';
+import './HeaderSearchBar.css';
+import arrow from '../../../../public/img/back-arrow.png';
 export default function HeaderSearchBar (props) {
     return (
-        <div className='search_row'>
+        <div className="search_row">
             {(props.width <= 480 && props.isOpenSearchBar) && (
                 <div
                     onClick={() => props.onSetOpenSearchBar(false)}
-                    className='prevButton'>
+                    className="prevButton">
                     <img
-                        src={arrow} alt='Back-Arrow' />
+                        src={arrow} alt="Back-Arrow" />
                 </div>
             )}
-            {(props.width > 480 || (props.width <= 480 && props.isOpenSearchBar)) && <div className='search_input'>
+            {(props.width > 480 || (props.width <= 480 && props.isOpenSearchBar)) && <div className="search_input">
                 <input
-                    onChange={props.getInputValue}
-                    className='input'
-                    type='text'
-                    placeholder='Search for Vegetables and Fruits'
+                    onChange={props.handleGetInputValue}
+                    className="input"
+                    type="text"
+                    placeholder="Search for Vegetables and Fruits"
                 />
             </div>}
-            <div className='search_button'>
+            <div className="search_button">
                 <button
                     onClick={props.setInputOnClick}
-                    className='button'></button>
+                    className="button"></button>
             </div>
         </div>
     )

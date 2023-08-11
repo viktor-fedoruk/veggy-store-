@@ -1,9 +1,9 @@
-import './VeggyBody.css'
-import VeggyProductItem from "./VeggyProductItem/VeggyProductItem.jsx";
+import './ProductBody.css'
+import ProductItem from "./VeggyProductItem/ProductItem.jsx";
 import {useState} from "react";
 import ModalProductItemImage from "./Modal/Modal.jsx";
 
-export default function VeggyBody(props) {
+export default function ProductBody(props) {
     const [modalActive, setModalActive] = useState(false);
 
 
@@ -20,7 +20,6 @@ export default function VeggyBody(props) {
             product.id === parseInt(getProductId)
         )
 
-        console.log(getProductInfo);
 
         const updateImageValue = {};
 
@@ -33,17 +32,17 @@ export default function VeggyBody(props) {
 
     return (
         <>
-            <div className='productContainer' >
-                <div className='productList'>
+            <div className="productContainer" >
+                <div className="productList">
                     {props.products.filter(product =>
-                        product.name.toLowerCase().startsWith(props.inputText))
+                        product.name.toLowerCase().startsWith(props.getProductName))
                         .map((product) =>
-                        <VeggyProductItem
+                        <ProductItem
                             zoomProductImage={zoomProductImage}
                             key={product.id}
                             product={product}
-                            addProduct={props.addProduct}
-                            setAddProduct={props.setAddProduct}
+                            selectedProducts={props.selectedProducts}
+                            setSelectedProducts={props.setSelectedProducts}
                             setShakingCart={props.setShakingCart}
                             shakingCart={props.shakingCart}
                         /> )}
@@ -52,24 +51,24 @@ export default function VeggyBody(props) {
                     < ModalProductItemImage
                         imageValue={imageValue}
                         setModalActive={setModalActive}>
-                            <div className='contentRow'
+                            <div className="contentRow"
                                  onClick={e => e.stopPropagation()}>
                                 <div
-                                    className='modalQuickWatchProductImage'>
-                                    <img src={imageValue.src} alt='ProductImage' />
+                                    className="modalQuickWatchProductImage">
+                                    <img src={imageValue.src} alt="ProductImage" />
                                 </div>
-                                <div className='modalQuickWatchProductInfo'>
-                                    <p className='modalQuickWatchProductName'>
+                                <div className="modalQuickWatchProductInfo">
+                                    <p className="modalQuickWatchProductName">
                                         {imageValue.name}
                                     </p>
-                                    <p className='modalQuickWatchProductPrice'>
+                                    <p className="modalQuickWatchProductPrice">
                                         $ {imageValue.price}
                                     </p>
                                 </div>
-                                <div className='modalQuickWatchProductRemoveButton'>
+                                <div className="modalQuickWatchProductRemoveButton">
                                     <button
                                         onClick={() => setModalActive(false)}
-                                        className='modalRemoveBtn'>
+                                        className="modalRemoveBtn">
                                         ×
                                     </button>
                                 </div>

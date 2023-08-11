@@ -3,12 +3,12 @@ import './HeaderCart.css'
 import CartList from "./CartList/CartList.jsx";
 import useWidth from "../../../../hooks/useWindowResize.js";
 export default function HeaderCart (props) {
-    let productQuantity = props.addProduct.length;
-    let getEachProductSum = props.addProduct.map(product => product.sum);
+    let productQuantity = props.selectedProducts.length;
+    let getEachProductSum = props.selectedProducts.map(product => product.sum);
     let getAllProductSum  = getEachProductSum.reduce((sum, current) => sum + current, 0);
     let width = useWidth();
     function handleMoreClick() {
-        props.setModalActive(!props.modalActive);
+        props.setIsModalActive(!props.isModalActive);
     }
 
     return (
@@ -37,11 +37,11 @@ export default function HeaderCart (props) {
                 </a>
             </div>
             <CartList
-                setModalActive={props.setModalActive}
-                modalActive={props.modalActive}
+                setIsModalActive={props.setIsModalActive}
+                isModalActive={props.isModalActive}
                 products={props.products}
-                addProduct={props.addProduct}
-                setAddProduct={props.setAddProduct}
+                selectedProducts={props.selectedProducts}
+                setSelectedProducts={props.setSelectedProducts}
             />
         </div>
     )
