@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { RotatingLines } from  'react-loader-spinner';
-import Header from './components/VeggyHeader/VeggyHeader.jsx';
-import ProductBody from './components/VeggyBody/ProductBody.jsx';
+import Header from './components/VeggyHeader/Header.jsx';
+import ProductList from './components/VeggyBody/ProductBody.jsx';
 import './assets/cssStyle/App.css';
 import './components/VeggyHeader/HeaderCart/CartList/CartList.css';
 
@@ -17,6 +17,7 @@ function App() {
         async function getProducts () {
             try {
                 setIsLoadingSpinner(true);
+
                 const response = await fetch('http://localhost:3001/vegs');
 
                 if (!response.ok) {
@@ -41,7 +42,7 @@ function App() {
     }
 
     return (
-        <div className="productListContainer">
+        <div className="container">
             <Header
                 handleGetInputValue={handleChangeInputValue}
                 isModalActive={isModalActive}
@@ -64,7 +65,7 @@ function App() {
                     />
                 </div>
             ) : (
-                <ProductBody
+                <ProductList
                     getProductName={inputText}
                     products={products}
                     selectedProducts={selectedProducts}

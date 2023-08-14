@@ -1,4 +1,5 @@
-export default function ModalProductItemImage({ setModalActive, children }) {
+
+export default function Modal({ setModalActive, children }) {
     return (
         <div
             onClick={() => setModalActive(false)}

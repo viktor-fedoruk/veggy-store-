@@ -1,14 +1,23 @@
-import CartImg from "../../../../public/img/cart.png"
-import './HeaderCart.css'
-import CartList from "./CartList/CartList.jsx";
 import useWidth from "../../../../hooks/useWindowResize.js";
+import CartList from "./CartList/CartList.jsx";
+import './HeaderCart.css';
+import CartImg from "../../../../public/img/cart.png";
+
 export default function HeaderCart (props) {
-    let productQuantity = props.selectedProducts.length;
-    let getEachProductSum = props.selectedProducts.map(product => product.sum);
+    const {products,
+        selectedProducts,
+        setSelectedProducts,
+        isModalActive,
+        setIsModalActive,
+        shakingCart,
+        setShakingCart
+    } = props;
+    const productQuantity = selectedProducts.length;
+    let getEachProductSum = selectedProducts.map(product => product.sum);
     let getAllProductSum  = getEachProductSum.reduce((sum, current) => sum + current, 0);
     let width = useWidth();
     function handleMoreClick() {
-        props.setIsModalActive(!props.isModalActive);
+        setIsModalActive(!isModalActive);
     }
 
     return (
@@ -21,9 +30,9 @@ export default function HeaderCart (props) {
                     <strong> {getAllProductSum}</strong>
                 </li>
             </ul>
-            <div className={props.shakingCart ? 'cart active' : 'cart'}
+            <div className={shakingCart ? 'cart active' : 'cart'}
                  onClick={e => e.stopPropagation()}
-                 onAnimationEnd={() => props.setShakingCart(false)}>
+                 onAnimationEnd={() => setShakingCart(false)}>
                 {productQuantity > 0 && width <= 800 &&
                     <span
                         className='cart_count'>
@@ -37,11 +46,11 @@ export default function HeaderCart (props) {
                 </a>
             </div>
             <CartList
-                setIsModalActive={props.setIsModalActive}
-                isModalActive={props.isModalActive}
-                products={props.products}
-                selectedProducts={props.selectedProducts}
-                setSelectedProducts={props.setSelectedProducts}
+                setIsModalActive={setIsModalActive}
+                isModalActive={isModalActive}
+                products={products}
+                selectedProducts={selectedProducts}
+                setSelectedProducts={setSelectedProducts}
             />
         </div>
     )

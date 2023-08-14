@@ -1,25 +1,28 @@
-import './CartList.css'
-import cartListImg from '../../../../../public/img/empty-cart.png'
-import '../HeaderCart.css'
+import './CartList.css';
+import '../HeaderCart.css';
+import emptyCartImg from '../../../../../public/img/empty-cart.png';
 
 export  default function CartList ({isModalActive, selectedProducts, setSelectedProducts}) {
-
     return (
         <>
         {isModalActive &&
             <div className="cartListContainer">
-                <div className="cartListRow"
-                     onClick={e => e.stopPropagation()}>
-                    <div className={selectedProducts.length > 0 ? "emptyImageRow disable" : "emptyImageRow"}>
-                        <img className="emptyCartImage"
-                             alt="emptyCartImage"
-                             src={cartListImg}/>
-                        <h2 className="cartInfo">
-                            Your Cart is Empty!
-                        </h2>
+                <div
+                    className="cartListRow"
+                    onClick={e => e.stopPropagation()}
+                >
+                    <div className={`emptyImageRow ${selectedProducts.length > 0 ? "disable" : ""}`}>
+                        <img
+                            className="emptyCartImage"
+                            alt="emptyCartImage"
+                            src={emptyCartImg}
+                        />
+                        <h2 className="cartInfo">Your Cart is Empty!</h2>
                     </div>
+
                     {selectedProducts.map(product =>
-                        <ul className="listProductItem"
+                        <ul
+                            className="cartListProductItem"
                             onAnimationEnd={() => {
                                 setSelectedProducts(
                                     selectedProducts.filter(a =>
@@ -27,43 +30,45 @@ export  default function CartList ({isModalActive, selectedProducts, setSelected
                                     ));
                             }}
                             key={product.id}
-                            id={product.id}>
+                            id={product.id}
+                        >
                             <div className="listProductImg">
-                                <img className="listProductImage" src={product.image} alt="listProductImage"/>
+                                <img
+                                    className="listProductImage"
+                                    src={product.image}
+                                    alt="listProductImage"
+                                />
                             </div>
                             <div className="listProductInfo">
-                                <p className="listProductName">
-                                    {product.name}
-                                </p>
-                                <p className="listProductPrice">
-                                    {`$ ${product.price}`}
-                                </p>
+                                <p className="listProductName">{product.name}</p>
+                                <p className="listProductPrice">{`$ ${product.price}`}</p>
                             </div>
                             <div className="listProductQuantity-Sum">
-                                <p className="listProductQuantity">
-                                    {`${product.quantity} No.`}
-                                </p>
-                                <p className="listProductSum">
-                                    {`$ ${product.sum}`}
-                                </p>
+                                <p className="listProductQuantity">{`${product.quantity} No.`}</p>
+                                <p className="listProductSum">{`$ ${product.sum}`}</p>
                             </div>
                             <div className="removeProductBtn">
                                 <button
                                     onClick={() => {
-                                        const productItemUl = event.target.closest(".listProductItem");
+                                        const productItemUl = event.target.closest(".cartListProductItem");
                                         if (productItemUl) {
                                             productItemUl.classList.add("active");
                                         }
                                     }}
-                                    className="removeProduct">
+                                    className="removeProduct"
+                                >
                                     ×
                                 </button>
                             </div>
                         </ul>)}
+
                     <div className="checkoutButton">
-                        <button className="checkoutBtn"
-                                type="button"
-                                disabled="disabled">PROCEED TO CHECKOUT
+                        <button
+                            className="checkoutBtn"
+                            type="button"
+                            disabled="disabled"
+                        >
+                            PROCEED TO CHECKOUT
                         </button>
                     </div>
                 </div>
