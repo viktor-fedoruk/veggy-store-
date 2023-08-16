@@ -2,16 +2,16 @@ import './CartList.css';
 import '../HeaderCart.css';
 import emptyCartImg from '../../../../../public/img/empty-cart.png';
 
-export  default function CartList ({isModalActive, selectedProducts, setSelectedProducts}) {
+export  default function CartList({isOpenHeaderCartModal, headerCartProducts, setHeaderCartProducts}) {
     return (
         <>
-        {isModalActive &&
+        {isOpenHeaderCartModal &&
             <div className="cartListContainer">
                 <div
                     className="cartListRow"
                     onClick={e => e.stopPropagation()}
                 >
-                    <div className={`emptyImageRow ${selectedProducts.length > 0 ? "disable" : ""}`}>
+                    <div className={`emptyImageRow ${headerCartProducts.length > 0 ? "disable" : ""}`}>
                         <img
                             className="emptyCartImage"
                             alt="emptyCartImage"
@@ -20,17 +20,16 @@ export  default function CartList ({isModalActive, selectedProducts, setSelected
                         <h2 className="cartInfo">Your Cart is Empty!</h2>
                     </div>
 
-                    {selectedProducts.map(product =>
-                        <ul
-                            className="cartListProductItem"
+                    {headerCartProducts.map(product =>
+                        <ul className="cartListProductItem"
+                            key={product.id}
+                            id={product.id}
                             onAnimationEnd={() => {
-                                setSelectedProducts(
-                                    selectedProducts.filter(a =>
+                                setHeaderCartProducts(
+                                    headerCartProducts.filter(a =>
                                         a.id !== product.id
                                     ));
                             }}
-                            key={product.id}
-                            id={product.id}
                         >
                             <div className="listProductImg">
                                 <img

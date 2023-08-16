@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import { RotatingLines } from  'react-loader-spinner';
 import Header from './components/VeggyHeader/Header.jsx';
-import ProductList from './components/VeggyBody/ProductBody.jsx';
+import ProductList from './components/VeggyBody/ProductList.jsx';
 import './assets/cssStyle/App.css';
 import './components/VeggyHeader/HeaderCart/CartList/CartList.css';
 
 function App() {
     const [shakingCart, setShakingCart] = useState(false);
     const [products, setProducts] = useState([]);
-    const [selectedProducts, setSelectedProducts] = useState([]);
+    const [headerCartProducts, setHeaderCartProducts] = useState([]);
     const [inputText, setInputText] = useState('');
-    const [isModalActive, setIsModalActive] = useState(false);
+    const [isOpenHeaderCartModal,setIsOpenHeaderCartModal] = useState(false);
     const [isLoadingSpinner, setIsLoadingSpinner] = useState(false);
 
     useEffect(() => {
-        async function getProducts () {
+        async function getProducts() {
             try {
                 setIsLoadingSpinner(true);
 
@@ -44,14 +44,15 @@ function App() {
     return (
         <div className="container">
             <Header
-                handleGetInputValue={handleChangeInputValue}
-                isModalActive={isModalActive}
-                setIsModalActive={setIsModalActive}
-                products={products}
-                selectedProducts={selectedProducts}
-                setSelectedProducts={setSelectedProducts}
+                onChangeHeaderInputValue={handleChangeInputValue}
+                isOpenHeaderCartModal={isOpenHeaderCartModal}
+                setIsOpenHeaderCartModal={setIsOpenHeaderCartModal}
+                headerCartProducts={headerCartProducts}
+                setHeaderCartProducts={setHeaderCartProducts}
                 setShakingCart={setShakingCart}
                 shakingCart={shakingCart}
+                inputText={inputText}
+                setInputText={setInputText}
             />
 
             {isLoadingSpinner ? (
@@ -66,10 +67,10 @@ function App() {
                 </div>
             ) : (
                 <ProductList
-                    getProductName={inputText}
+                    searchedProductName={inputText}
                     products={products}
-                    selectedProducts={selectedProducts}
-                    setSelectedProducts={setSelectedProducts}
+                    selectedProducts={headerCartProducts}
+                    setSelectedProducts={setHeaderCartProducts}
                     setShakingCart={setShakingCart}
                     shakingCart={shakingCart}
                 />
@@ -77,4 +78,5 @@ function App() {
         </div>
     )
 }
+
 export default App;

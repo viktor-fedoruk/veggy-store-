@@ -27,7 +27,6 @@ export default function ProductItem (props) {
 
     const removeCountHandler = () => {
         if(count === 1){
-            alert('Your counter cannot be less than 0');
             return;
         }
         setCount(count - 1);

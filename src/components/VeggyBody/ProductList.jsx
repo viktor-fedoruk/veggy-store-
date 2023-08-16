@@ -1,11 +1,13 @@
 import { useState } from "react";
 import ProductItem from "./VeggyProductItem/ProductItem.jsx";
 import Modal from "./Modal/Modal.jsx";
-import "./ProductBody.css";
+import "./ProductList.css";
+import NoFoundProductImg from "./../../../public/img/no-product-found.png";
+
 export default function ProductList(props) {
     const {
         products,
-        getProductName,
+        searchedProductName,
         selectedProducts,
         setSelectedProducts,
         setShakingCart,
@@ -13,6 +15,7 @@ export default function ProductList(props) {
     } = props;
     const [modalActive, setModalActive] = useState(false);
     const [imageValue, setImageValue] = useState({ src: null, name: null, price: null });
+    const filterProductsItem = products.filter(product => product.name.toLowerCase().startsWith(searchedProductName));
 
     function zoomProductImage (e) {
         setModalActive(modalActive => !modalActive);
@@ -35,7 +38,12 @@ export default function ProductList(props) {
         <div className="productContainer">
             <ul className="productList">
 
-                {products.filter(product => product.name.toLowerCase().startsWith(getProductName)).map((product) =>
+                {filterProductsItem.length === 0 ?
+                    <div className='no_found_product_container'>
+                        <img src={NoFoundProductImg} alt="No-Found-Product-Img" />
+                    </div>
+                    :
+                    products.filter(product => product.name.toLowerCase().startsWith(searchedProductName)).map((product) =>
                     <ProductItem
                         zoomProductImage={zoomProductImage}
                         key={product.id}
@@ -44,7 +52,7 @@ export default function ProductList(props) {
                         setSelectedProducts={setSelectedProducts}
                         setShakingCart={setShakingCart}
                         shakingCart={shakingCart}
-                    /> )}
+                    />)}
             </ul>
 
             {modalActive && (

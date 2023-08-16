@@ -5,16 +5,15 @@ import HeaderSearchBar from "./HeaderSearchBar/HeaderSerchBar.jsx";
 import HeaderCart from "./HeaderCart/HeaderCart.jsx";
 import './Header.css';
 
-export default function Header (props) {
+export default function Header(props) {
     const {
-        products,
-        selectedProducts,
-        setSelectedProducts,
-        isModalActive,
-        setIsModalActive,
+        headerCartProducts,
+        setHeaderCartProducts,
+        isOpenHeaderCartModal,
+        setIsOpenHeaderCartModal,
         shakingCart,
         setShakingCart,
-        handleGetInputValue,
+        onChangeHeaderInputValue,
     } = props;
     const [isOpenSearchBar, setIsOpenSearchBar] = useState(true);
     const width = useWidth();
@@ -26,7 +25,7 @@ export default function Header (props) {
         }
     }, [width]);
 
-    function setInputOnClick () {
+    function showInputOnClick() {
         if (isMobile) {
             setIsOpenSearchBar(true);
         }
@@ -37,24 +36,26 @@ export default function Header (props) {
             <div className="header_container">
                 <div className="header_row">
 
-                    {(!isMobile || isMobile && !isOpenSearchBar) && <HeaderLogo />}
+                    {(!isMobile || isMobile && !isOpenSearchBar) && (<HeaderLogo />)}
                     <HeaderSearchBar
                         width={width}
                         onSetOpenSearchBar={setIsOpenSearchBar}
                         isOpenSearchBar={isOpenSearchBar}
-                        setInputOnClick={setInputOnClick}
-                        handleGetInputValue={handleGetInputValue}
+                        onShowInputOnClick={showInputOnClick}
+                        onChangeHeaderInputValue={onChangeHeaderInputValue}
+                        inputText={props.inputText}
+                        setInputText={props.setInputText}
                     />
 
-                    {(!isMobile || isMobile && !isOpenSearchBar) && <HeaderCart
-                        isModalActive={isModalActive}
-                        setIsModalActive={setIsModalActive}
-                        products={products}
-                        selectedProducts={selectedProducts}
-                        setSelectedProducts={setSelectedProducts}
+                    {(!isMobile || isMobile && !isOpenSearchBar) && (
+                        <HeaderCart
+                        isOpenHeaderCartModal={isOpenHeaderCartModal}
+                        setIsOpenHeaderCartModal={setIsOpenHeaderCartModal}
+                        headerCartProducts={headerCartProducts}
+                        setHeaderCartProducts={setHeaderCartProducts}
                         setShakingCart={setShakingCart}
                         shakingCart={shakingCart}
-                    />}
+                    />)}
                 </div>
             </div>
         </div>

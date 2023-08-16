@@ -15,6 +15,20 @@
     justify-content: flex-start;
 }
 
+.no_found_product_container {
+    position: relative;
+    margin: auto;
+}
+
+.no_found_product_container img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    max-width: 550px;
+    max-height: 315px;
+}
+
 .modalWatchProductContainer{
     position: fixed;
     width: 100%;

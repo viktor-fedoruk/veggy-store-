@@ -10,12 +10,12 @@
     border: 0.3px solid rgba(0,0,0,.19);
     z-index: 99;
 }
+
 .cartListRow {
     display: flex;
     flex-direction: column;
     align-items: center;
     line-height: 1.2;
-    text-wrap: nowrap;
 }
 
 .cartListProductItem:hover {
@@ -49,7 +49,6 @@
 .emptyImageRow.disable {
     display: none;
 }
-
 
 .cartListContainer:after {
     content: "";
@@ -88,9 +87,9 @@
 .emptyRow {
     padding: 0 0 100px 0;
 }
+
 .emptyCartImage {
     width: 250px;
-
 }
 
 .cartInfo {
@@ -109,7 +108,7 @@
 }
 
 .cartListProductItem:active {
-       transition-duration: 0.1s;
+    transition-duration: 0.1s;
 }
 
 .listProductImage {

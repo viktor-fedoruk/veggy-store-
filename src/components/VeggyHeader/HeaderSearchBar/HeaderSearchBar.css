@@ -5,14 +5,15 @@
     width: 400px;
 }
 
-.search_input {
+.search_product {
     width: 100%;
+    position: relative;
 }
 
 .input {
     display: block;
     width: 100%;
-    padding: 0 15px;
+    padding: 0 10px;
     height: 36px;
     border: 1px solid #077915;
     border-radius: 2px 0 0 2px;
@@ -24,7 +25,7 @@
 }
 
 .button {
-    background: #077915 url('../../../../public/img/searchLoupe.png') 50% no-repeat;
+    background: #077915 url("../../../../public/img/searchLoupe.png") 50% no-repeat;
     width: 70px;
     height: 36px;
     border-radius: 0 2px 2px 0;
@@ -44,8 +45,22 @@
     cursor: pointer;
 }
 
+.cleaning_input {
+    position: absolute;
+    top: 6px;
+    right: 2px;
+    height: 24px;
+    border-radius: 2px;
+    line-height: 24px;
+    width: 24px;
+    font-size: 22px;
+    color: #ccc;
+    text-align: center;
+    background: none;
+}
 
 @media only screen and (max-width : 800px)  {
+
     .header_row {
         justify-content: space-between;
     }
@@ -64,7 +79,7 @@
     }
 
     .input {
-        padding: 0 0 0 2px;
+        padding: 0 5px;
     }
 }
 
@@ -74,10 +89,6 @@
     }
     .header_row {
         justify-content: space-between;
-    }
-
-    .search_input.mobile {
-
     }
 
     .button {
