@@ -9,6 +9,10 @@
     padding: 0 5px;
 }
 
+.cart_icon {
+    cursor: pointer;
+}
+
 .cart_info {
     font-size: 14px;
     color: #077915;

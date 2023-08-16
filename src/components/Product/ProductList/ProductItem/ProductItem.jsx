@@ -4,10 +4,10 @@ import './ProductItem.css';
 export default function ProductItem(props) {
     const {
         product,
-        selectedProducts,
-        setSelectedProducts,
+        cartProducts,
+        setCartProducts,
         zoomProductImage,
-        setShakingCart,
+        setIsCartShakingAnimation,
     } = props;
 
     const [count, setCount] = useState(1);
@@ -37,14 +37,14 @@ export default function ProductItem(props) {
         setCount(e.target.value);
     }
 
-    function addProduct() {
-        const productInCart = selectedProducts.find(productItem => productItem.id === product.id);
+    function addToCart() {
+        const productInCart = cartProducts.find(productItem => productItem.id === product.id);
 
-        setShakingCart(true);
+        setIsCartShakingAnimation(true);
 
         if (!productInCart) {
-            setSelectedProducts([
-                ...selectedProducts,
+            setCartProducts([
+                ...cartProducts,
                 {
                     ...product,
                     quantity: count,
@@ -52,16 +52,16 @@ export default function ProductItem(props) {
                 }
             ])
         } else {
-            const productIndexInCartArray = selectedProducts.findIndex(productItem => productItem.id === product.id);
+            const productIndexInCartArray = cartProducts.findIndex(productItem => productItem.id === product.id);
 
-            selectedProducts[productIndexInCartArray] = {
-                ...selectedProducts[productIndexInCartArray],
+            cartProducts[productIndexInCartArray] = {
+                ...cartProducts[productIndexInCartArray],
                 quantity: productInCart.quantity + count,
                 sum: (productInCart.quantity + count) * productInCart.price,
             };
 
-            setSelectedProducts([
-                ...selectedProducts
+            setCartProducts([
+                ...cartProducts
             ]);
         }
     }
@@ -106,7 +106,7 @@ export default function ProductItem(props) {
 
             <div
                 className="addButtonWrapper"
-                onClick={addProduct}
+                onClick={addToCart}
             >
                 <button
                     type="button"

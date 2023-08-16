@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
-import { RotatingLines } from  'react-loader-spinner';
-import Header from './components/VeggyHeader/Header.jsx';
-import ProductList from './components/VeggyBody/ProductList.jsx';
-import './assets/cssStyle/App.css';
-import './components/VeggyHeader/HeaderCart/CartList/CartList.css';
+import Header from './components/Header/Header.jsx';
+import ProductList from './components/Product/ProductList/ProductList.jsx';
+import Spinner from "./components/Product/Spinner/Spinner.jsx";
+import './App.css';
+import './components/Header/HeaderCart/CartList/CartList.css';
 
 export default function App() {
-    const [shakingCart, setShakingCart] = useState(false);
+    const [isCartShakingAnimation, setIsCartShakingAnimation] = useState(false);
     const [products, setProducts] = useState([]);
     const [headerCartProducts, setHeaderCartProducts] = useState([]);
-    const [inputText, setInputText] = useState('');
+    const [searchedProductName, setSearchedProductName] = useState('');
     const [isOpenHeaderCartModal,setIsOpenHeaderCartModal] = useState(false);
-    const [isLoadingSpinner, setIsLoadingSpinner] = useState(false);
+    const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
     useEffect(() => {
         async function getProducts() {
             try {
-                setIsLoadingSpinner(true);
+                setIsLoadingProducts(true);
 
                 const response = await fetch('http://localhost:3001/vegs');
 
@@ -24,13 +24,14 @@ export default function App() {
                     const message = `An error has occured: ${response.status}`;
                     throw new Error(message);
                 }
+
                 const result = await response.json();
 
                 setProducts(result);
             } catch (error) {
                 console.log(error);
             } finally {
-                setIsLoadingSpinner(false);
+                setIsLoadingProducts(false);
             }
         }
 
@@ -38,7 +39,7 @@ export default function App() {
     }, []);
 
     function handleChangeInputValue(e) {
-        setInputText(e.target.value);
+        setSearchedProductName(e.target.value);
     }
 
     return (
@@ -49,30 +50,20 @@ export default function App() {
                 setIsOpenHeaderCartModal={setIsOpenHeaderCartModal}
                 headerCartProducts={headerCartProducts}
                 setHeaderCartProducts={setHeaderCartProducts}
-                setShakingCart={setShakingCart}
-                shakingCart={shakingCart}
-                inputText={inputText}
-                setInputText={setInputText}
+                setIsCartShakingAnimation={setIsCartShakingAnimation}
+                isCartShakingAnimation={isCartShakingAnimation}
+                headerProductSearchingInput={searchedProductName}
+                setheaderProductSearchingInput={setSearchedProductName}
             />
-
-                {isLoadingSpinner ? (
-                    <div className="rotatingSpinner">
-                        <RotatingLines
-                            strokeColor="green"
-                            strokeWidth="5"
-                            animationDuration="0.75"
-                            width="86"
-                            visible
-                        />
-                    </div>
+                {isLoadingProducts ? (
+                    <Spinner />
                 ) : (
                     <ProductList
-                        searchedProductName={inputText}
+                        searchedProductName={searchedProductName}
                         products={products}
-                        selectedProducts={headerCartProducts}
-                        setSelectedProducts={setHeaderCartProducts}
-                        setShakingCart={setShakingCart}
-                        shakingCart={shakingCart}
+                        cartProducts={headerCartProducts}
+                        setCartProducts={setHeaderCartProducts}
+                        setIsCartShakingAnimation={setIsCartShakingAnimation}
                     />
                 )
             }

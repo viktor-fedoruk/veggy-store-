@@ -1,7 +1,7 @@
-export default function Modal({ setModalActive, children }) {
+export default function Modal({ setIsModalActive, children }) {
     return (
         <div
-            onClick={() => setModalActive(false)}
+            onClick={() => setIsModalActive(false)}
             className="modalWatchProductContainer"
         >
             <div className="modalWatchProductRow">{children}</div>

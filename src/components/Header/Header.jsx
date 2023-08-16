@@ -11,9 +11,11 @@ export default function Header(props) {
         setHeaderCartProducts,
         isOpenHeaderCartModal,
         setIsOpenHeaderCartModal,
-        shakingCart,
-        setShakingCart,
+        isCartShakingAnimation,
+        setIsCartShakingAnimation,
         onChangeHeaderInputValue,
+        headerProductSearchingInput,
+        setHeaderProductSearchingInput,
     } = props;
 
     const [isOpenSearchBar, setIsOpenSearchBar] = useState(true);
@@ -24,6 +26,7 @@ export default function Header(props) {
         if (isMobile) {
             setIsOpenSearchBar(false);
         }
+
     }, [width]);
 
     function showInputOnClick() {
@@ -46,8 +49,8 @@ export default function Header(props) {
                         isOpenSearchBar={isOpenSearchBar}
                         onShowInputOnClick={showInputOnClick}
                         onChangeHeaderInputValue={onChangeHeaderInputValue}
-                        inputText={props.inputText}
-                        setInputText={props.setInputText}
+                        headerProductSearchingInput={headerProductSearchingInput}
+                        setHeaderProductSearchingInput={setHeaderProductSearchingInput}
                     />
 
                     {(!isMobile || isMobile && !isOpenSearchBar) && (
@@ -56,8 +59,8 @@ export default function Header(props) {
                         setIsOpenHeaderCartModal={setIsOpenHeaderCartModal}
                         headerCartProducts={headerCartProducts}
                         setHeaderCartProducts={setHeaderCartProducts}
-                        setShakingCart={setShakingCart}
-                        shakingCart={shakingCart}
+                        setIsCartShakingAnimation={setIsCartShakingAnimation}
+                        isCartShakingAnimation={isCartShakingAnimation}
                     />)}
                 </div>
             </div>

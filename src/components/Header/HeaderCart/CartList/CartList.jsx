@@ -2,7 +2,7 @@ import './CartList.css';
 import '../HeaderCart.css';
 import emptyCartImg from '../../../../../public/img/empty-cart.png';
 
-export  default function CartList({isOpenHeaderCartModal, headerCartProducts, setHeaderCartProducts}) {
+export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, setHeaderCartProducts }) {
     return (
         <>
             {isOpenHeaderCartModal && (
@@ -52,6 +52,7 @@ export  default function CartList({isOpenHeaderCartModal, headerCartProducts, se
 
                                 <div className="removeProductBtn">
                                     <button
+                                        className="removeProduct"
                                         onClick={() => {
                                             const productItemUl = event.target.closest(".cartListProductItem");
 
@@ -59,7 +60,6 @@ export  default function CartList({isOpenHeaderCartModal, headerCartProducts, se
                                                 productItemUl.classList.add("active");
                                             }
                                         }}
-                                        className="removeProduct"
                                     >
                                         ×
                                     </button>
@@ -71,7 +71,7 @@ export  default function CartList({isOpenHeaderCartModal, headerCartProducts, se
                             <button
                                 className="checkoutBtn"
                                 type="button"
-                                disabled="disabled"
+                                disabled
                             >
                                 PROCEED TO CHECKOUT
                             </button>

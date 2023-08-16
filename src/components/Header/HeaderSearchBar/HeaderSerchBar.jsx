@@ -5,7 +5,7 @@ export default function HeaderSearchBar(props) {
     function cleaningInputText() {
         document.getElementById('search_product').value = '';
 
-        props.setInputText('');
+        props.setHeaderProductSearchingInput('');
     }
 
     return (
@@ -32,7 +32,7 @@ export default function HeaderSearchBar(props) {
                         placeholder="Search for Vegetables and Fruits"
                     />
 
-                    {props.inputText.length > 0 && (
+                    {props.headerProductSearchingInput.length > 0 && (
                         <button
                             className="cleaning_input"
                             onClick={cleaningInputText}

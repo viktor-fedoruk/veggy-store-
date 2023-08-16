@@ -25,10 +25,11 @@
     }
 }
 
-@media (max-width : 300px)  {
+@media (max-width : 320px)  {
     .headerLogo {
         padding: 0;
     }
+
     .cart {
         padding: 0 5px 0 0;
     }

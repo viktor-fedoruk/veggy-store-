@@ -9,8 +9,8 @@ export default function HeaderCart(props) {
         setHeaderCartProducts,
         setIsOpenHeaderCartModal,
         isOpenHeaderCartModal,
-        shakingCart,
-        setShakingCart,
+        isCartShakingAnimation,
+        setIsCartShakingAnimation,
     } = props;
 
     const productQuantity = headerCartProducts.length;
@@ -36,21 +36,21 @@ export default function HeaderCart(props) {
             </ul>
 
             <div
-                className={shakingCart ? "cart active" : "cart"}
+                className={`cart ${isCartShakingAnimation ? "cart active" : ""}`}
                  onClick={e => e.stopPropagation()}
-                 onAnimationEnd={() => setShakingCart(false)}
+                 onAnimationEnd={() => setIsCartShakingAnimation(false)}
             >
                 {(productQuantity > 0 && width <= 800) && (
                     <span className="cart_count">{productQuantity}</span>
                 )}
 
-                <a href="#">
+                <span className='cart_icon'>
                     <img
                         src={CartImg}
                         onClick={handleOpenCartList}
                         alt="Cart Icon"
                     />
-                </a>
+                </span>
             </div>
 
             <CartList
