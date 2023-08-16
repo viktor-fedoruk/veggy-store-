@@ -28,11 +28,9 @@
 }
 
 .productImg img:hover {
-    -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
 }
-
 
 .productName {
     font-size: 16px;
@@ -121,7 +119,6 @@ input::-webkit-inner-spin-button {
     }
 }
 
-
 @media (max-width : 620px)  {
     .productItem {
         margin: 10px 5px;
@@ -130,7 +127,7 @@ input::-webkit-inner-spin-button {
     .productImg {
       max-width: 300px;
       max-height: 300px;
-  }
+    }
 
     .productName {
         margin-bottom: 10px;

@@ -11,8 +11,9 @@ export default function ProductList(props) {
         selectedProducts,
         setSelectedProducts,
         setShakingCart,
-        shakingCart
+        shakingCart,
     } = props;
+
     const [modalActive, setModalActive] = useState(false);
     const [imageValue, setImageValue] = useState({ src: null, name: null, price: null });
     const filterProductsItem = products.filter(product => product.name.toLowerCase().startsWith(searchedProductName));
@@ -26,33 +27,40 @@ export default function ProductList(props) {
         let getProductInfo = products.find(product =>
             product.id === parseInt(getProductId)
         );
-        const updateImageValue = {
+
+        setImageValue({
             src : getImageProduct,
             name : getProductInfo.name,
             price : getProductInfo.price,
-        }
-        setImageValue(updateImageValue);
+        });
     }
 
     return (
         <div className="productContainer">
             <ul className="productList">
 
-                {filterProductsItem.length === 0 ?
-                    <div className='no_found_product_container'>
-                        <img src={NoFoundProductImg} alt="No-Found-Product-Img" />
+                {filterProductsItem.length === 0 ? (
+                    <div className="no_found_product_container">
+                        <img
+                            src={NoFoundProductImg}
+                            alt="No-Found-Product-Img"
+                        />
                     </div>
-                    :
-                    products.filter(product => product.name.toLowerCase().startsWith(searchedProductName)).map((product) =>
-                    <ProductItem
-                        zoomProductImage={zoomProductImage}
-                        key={product.id}
-                        product={product}
-                        selectedProducts={selectedProducts}
-                        setSelectedProducts={setSelectedProducts}
-                        setShakingCart={setShakingCart}
-                        shakingCart={shakingCart}
-                    />)}
+                    ) : (
+                        products.filter(product => product.name.toLowerCase().startsWith(searchedProductName)).map((product) => (
+
+                            <ProductItem
+                                zoomProductImage={zoomProductImage}
+                                key={product.id}
+                                product={product}
+                                selectedProducts={selectedProducts}
+                                setSelectedProducts={setSelectedProducts}
+                                setShakingCart={setShakingCart}
+                                shakingCart={shakingCart}
+                            />)
+                        )
+                    )
+                }
             </ul>
 
             {modalActive && (
@@ -65,12 +73,18 @@ export default function ProductList(props) {
                         onClick={e => e.stopPropagation()}
                     >
                         <div className="modalQuickWatchProductImage">
-                            <img src={imageValue.src} alt="ProductImage" />
+                            <img
+                                src={imageValue.src}
+                                alt="ProductImage"
+                            />
                         </div>
                         <div className="modalQuickWatchProductInfo">
+
                             <p className="modalQuickWatchProductName"> {imageValue.name}</p>
                             <p className="modalQuickWatchProductPrice">$ {imageValue.price}</p>
+
                         </div>
+
                         <div className="modalQuickWatchProductRemoveButton">
                             <button
                                 onClick={() => setModalActive(false)}

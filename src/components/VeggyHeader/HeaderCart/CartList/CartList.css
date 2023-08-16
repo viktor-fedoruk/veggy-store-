@@ -23,30 +23,30 @@
     background: rgba(147,220,156,.15);
 }
 
-.listProductName {
+.cartListProductName {
     color: #999;
     font-size: 14px;
 }
 
-.listProductPrice {
+.cartListProductPrice {
     font-weight: 700;
     color: #999;
 }
 
-.listProductQuantity {
+.cartListProductQuantity {
     font-size: 14px;
     color: #999;
 }
 
-.listProductSum {
+.cartListProductSum {
     font-weight: 700;
 }
 
-.emptyImageRow {
+.emptyCartImageRow {
     padding: 0 0 100px 0;
 }
 
-.emptyImageRow.disable {
+.emptyCartImageRow.disable {
     display: none;
 }
 
@@ -57,9 +57,6 @@
     width: 0;
     height: 0;
     z-index: 10;
-}
-
-.cartListContainer:after {
     top: -7px;
     right: 9px;
     border-left: 7px solid transparent;
@@ -111,19 +108,19 @@
     transition-duration: 0.1s;
 }
 
-.listProductImage {
+.cartListProductImage {
     width: 55px;
     height: 55px;
 }
 
-.listProductInfo {
+.cartListProductInfo {
     display: flex;
     flex-direction: column;
     width: 220px;
     margin: 0 0 0 10px;
 }
 
-.listProductTotalPrice {
+.cartListProductTotalPrice {
     font-weight: 700;
 }
 

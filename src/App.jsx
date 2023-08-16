@@ -5,7 +5,7 @@ import ProductList from './components/VeggyBody/ProductList.jsx';
 import './assets/cssStyle/App.css';
 import './components/VeggyHeader/HeaderCart/CartList/CartList.css';
 
-function App() {
+export default function App() {
     const [shakingCart, setShakingCart] = useState(false);
     const [products, setProducts] = useState([]);
     const [headerCartProducts, setHeaderCartProducts] = useState([]);
@@ -24,8 +24,8 @@ function App() {
                     const message = `An error has occured: ${response.status}`;
                     throw new Error(message);
                 }
-
                 const result = await response.json();
+
                 setProducts(result);
             } catch (error) {
                 console.log(error);
@@ -55,28 +55,27 @@ function App() {
                 setInputText={setInputText}
             />
 
-            {isLoadingSpinner ? (
-                <div className="rotatingSpinner">
-                    <RotatingLines
-                        strokeColor="green"
-                        strokeWidth="5"
-                        animationDuration="0.75"
-                        width="86"
-                        visible
+                {isLoadingSpinner ? (
+                    <div className="rotatingSpinner">
+                        <RotatingLines
+                            strokeColor="green"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            width="86"
+                            visible
+                        />
+                    </div>
+                ) : (
+                    <ProductList
+                        searchedProductName={inputText}
+                        products={products}
+                        selectedProducts={headerCartProducts}
+                        setSelectedProducts={setHeaderCartProducts}
+                        setShakingCart={setShakingCart}
+                        shakingCart={shakingCart}
                     />
-                </div>
-            ) : (
-                <ProductList
-                    searchedProductName={inputText}
-                    products={products}
-                    selectedProducts={headerCartProducts}
-                    setSelectedProducts={setHeaderCartProducts}
-                    setShakingCart={setShakingCart}
-                    shakingCart={shakingCart}
-                />
-            )}
+                )
+            }
         </div>
     )
 }
-
-export default App;

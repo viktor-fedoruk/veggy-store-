@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useWidth from "../../../hooks/useWindowResize.js";
+import useWindowWidth from "../../../hooks/useWindowResize.js";
 import HeaderLogo from "./HeaderLogo/HeaderLogo.jsx";
 import HeaderSearchBar from "./HeaderSearchBar/HeaderSerchBar.jsx";
 import HeaderCart from "./HeaderCart/HeaderCart.jsx";
@@ -15,8 +15,9 @@ export default function Header(props) {
         setShakingCart,
         onChangeHeaderInputValue,
     } = props;
+
     const [isOpenSearchBar, setIsOpenSearchBar] = useState(true);
-    const width = useWidth();
+    const width = useWindowWidth();
     const isMobile = width <= 480;
 
     useEffect(() => {
@@ -35,8 +36,10 @@ export default function Header(props) {
         <div className="header">
             <div className="header_container">
                 <div className="header_row">
+                    {(!isMobile || isMobile && !isOpenSearchBar) && (
+                        <HeaderLogo />
+                    )}
 
-                    {(!isMobile || isMobile && !isOpenSearchBar) && (<HeaderLogo />)}
                     <HeaderSearchBar
                         width={width}
                         onSetOpenSearchBar={setIsOpenSearchBar}

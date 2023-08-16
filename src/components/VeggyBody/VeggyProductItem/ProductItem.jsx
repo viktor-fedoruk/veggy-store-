@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './ProductItem.css';
 
-export default function ProductItem (props) {
+export default function ProductItem(props) {
     const {
         product,
         selectedProducts,
@@ -11,32 +11,33 @@ export default function ProductItem (props) {
     } = props;
 
     const [count, setCount] = useState(1);
-    const [buttonText, setButtonText] = useState('ADD TO CART');
+    const [buttonText, setButtonText] = useState("ADD TO CART");
 
-    function handleClickChangeButtonText() {
-        setButtonText('ADDED');
+    function handleChangeButtonText() {
+        setButtonText("ADDED");
 
         setTimeout(() => {
-            setButtonText('ADD TO CART');
+            setButtonText("ADD TO CART");
         }, 1000);
     }
 
-    const addCountHandler = () => {
+    const incrementProductQuantity = () => {
         setCount(n => n + 1);
     };
 
-    const removeCountHandler = () => {
-        if(count === 1){
+    const decrementProductQuantity = () => {
+        if (count === 1) {
             return;
         }
+
         setCount(count - 1);
     };
 
-    function checkInputCounter (e) {
+    function handleSetProductQuantity(e) {
         setCount(e.target.value);
     }
 
-    function addProduct () {
+    function addProduct() {
         const productInCart = selectedProducts.find(productItem => productItem.id === product.id);
 
         setShakingCart(true);
@@ -50,13 +51,15 @@ export default function ProductItem (props) {
                     sum: count * product.price,
                 }
             ])
-        }else {
+        } else {
             const productIndexInCartArray = selectedProducts.findIndex(productItem => productItem.id === product.id);
+
             selectedProducts[productIndexInCartArray] = {
                 ...selectedProducts[productIndexInCartArray],
                 quantity: productInCart.quantity + count,
-                sum: (productInCart.quantity + count) * productInCart.price
+                sum: (productInCart.quantity + count) * productInCart.price,
             };
+
             setSelectedProducts([
                 ...selectedProducts
             ]);
@@ -78,10 +81,9 @@ export default function ProductItem (props) {
             <p className="productName">{product.name}</p>
             <p className="productPrice">{`$ ${product.price}`}</p>
 
-            <div
-                className="productCount">
+            <div className="productCount">
                 <button
-                    onClick={removeCountHandler}
+                    onClick={decrementProductQuantity}
                     className="decrement count_btn"
                 >
                     -
@@ -90,11 +92,12 @@ export default function ProductItem (props) {
                 <input
                     className="count"
                     type="number"
-                    onChange={checkInputCounter}
+                    onChange={handleSetProductQuantity}
                     value={count}
                 />
+
                 <button
-                    onClick={addCountHandler}
+                    onClick={incrementProductQuantity}
                     className="increment count_btn"
                 >
                     +
@@ -107,8 +110,8 @@ export default function ProductItem (props) {
             >
                 <button
                     type="button"
-                    onClick={handleClickChangeButtonText}
-                    className={buttonText === "ADD TO CART" ? "addToCart" : "addToCart active"}
+                    onClick={handleChangeButtonText}
+                    className={`addToCart ${buttonText ===  "ADD TO CART" ? "" : "active"}`}
                 >
                     {buttonText}
                 </button>

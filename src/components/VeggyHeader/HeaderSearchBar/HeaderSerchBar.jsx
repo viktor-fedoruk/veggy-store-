@@ -2,22 +2,26 @@ import './HeaderSearchBar.css';
 import backArrow from '../../../../public/img/back-arrow.png';
 
 export default function HeaderSearchBar(props) {
-
     function cleaningInputText() {
         document.getElementById('search_product').value = '';
+
         props.setInputText('');
     }
+
     return (
         <div className="search_row">
-
             {(props.width <= 480 && props.isOpenSearchBar) && (
                 <div
                     onClick={() => props.onSetOpenSearchBar(false)}
-                    className="prevButton">
+                    className="prevButton"
+                >
                     <img
-                        src={backArrow} alt="Back-Arrow" />
+                        src={backArrow}
+                        alt="Back-Arrow"
+                    />
                 </div>
             )}
+
             {(props.width > 480 || (props.width <= 480 && props.isOpenSearchBar)) && (
                 <div className="search_product">
                     <input
@@ -28,16 +32,17 @@ export default function HeaderSearchBar(props) {
                         placeholder="Search for Vegetables and Fruits"
                     />
 
-                    {props.inputText.length > 0 &&
+                    {props.inputText.length > 0 && (
                         <button
                             className="cleaning_input"
                             onClick={cleaningInputText}
                         >
                             ×
                         </button>
-                    }
-                </div>)
-            }
+                    )}
+                </div>
+            )}
+
             <div className="search_button">
                 <button
                     onClick={props.onShowInputOnClick}

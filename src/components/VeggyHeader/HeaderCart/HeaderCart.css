@@ -17,7 +17,11 @@
     padding: 0 10px 0 0;
 }
 
-.item_count strong {
+.cart_item_count strong {
+    padding: 0 0 0 2px;
+}
+
+.cart_item_sum strong {
     padding: 0 0 0 2px;
 }
 
