@@ -55,18 +55,18 @@ export default function App() {
                 headerProductSearchingInput={searchedProductName}
                 setheaderProductSearchingInput={setSearchedProductName}
             />
-                {isLoadingProducts ? (
-                    <Spinner />
-                ) : (
-                    <ProductList
-                        searchedProductName={searchedProductName}
-                        products={products}
-                        cartProducts={headerCartProducts}
-                        setCartProducts={setHeaderCartProducts}
-                        setIsCartShakingAnimation={setIsCartShakingAnimation}
-                    />
-                )
-            }
+
+            {isLoadingProducts ? (
+                <Spinner />
+            ) : (
+                <ProductList
+                    searchedProductName={searchedProductName}
+                    products={products}
+                    cartProducts={headerCartProducts}
+                    setCartProducts={setHeaderCartProducts}
+                    setIsCartShakingAnimation={setIsCartShakingAnimation}
+                />
+            )}
         </div>
     )
 }
