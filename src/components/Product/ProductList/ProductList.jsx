@@ -15,7 +15,7 @@ export default function ProductList(props) {
 
     const [isModalActive, setIsModalActive] = useState(false);
     const [imageValue, setImageValue] = useState({ src: null, name: null, price: null });
-    const filterProductsItem = products.filter(product => product.name.toLowerCase().startsWith(searchedProductName));
+    const filterProductsItem = products.filter(product => product.name.toLowerCase().startsWith(searchedProductName.toLowerCase()));
 
     function zoomProductImage (e) {
         setIsModalActive(isModalActive => !isModalActive);
@@ -43,22 +43,21 @@ export default function ProductList(props) {
                             alt="No-Found-Product-Img"
                         />
                     </div>
-                    ) : (
-                        products.filter(product => product.name.toLowerCase().startsWith(searchedProductName)).map((product) => (
-                            <ProductItem
-                                zoomProductImage={zoomProductImage}
-                                key={product.id}
-                                product={product}
-                                cartProducts={cartProducts}
-                                setCartProducts={setCartProducts}
-                                setIsCartShakingAnimation={setIsCartShakingAnimation}
-                            />)
-                        )
-                    )
+                ) : (
+                    filterProductsItem.map((product) => (
+                        <ProductItem
+                            zoomProductImage={zoomProductImage}
+                            key={product.id}
+                            product={product}
+                            cartProducts={cartProducts}
+                            setCartProducts={setCartProducts}
+                            setIsCartShakingAnimation={setIsCartShakingAnimation}
+                        />
+                    )))
                 }
             </ul>
             {isModalActive && (
-                < Modal
+                <Modal
                     imageValue={imageValue}
                     setIsModalActive={setIsModalActive}
                 >
