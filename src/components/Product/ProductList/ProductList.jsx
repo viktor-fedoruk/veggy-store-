@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ProductItem from "./ProductItem/ProductItem.jsx";
-import Modal from "../Modal/Modal.jsx";
+import Modal from "../../Modal/Modal.jsx";
 import "./ProductList.css";
 import NoFoundProductImg from "../../../../public/img/no-product-found.png";
 
@@ -56,6 +56,7 @@ export default function ProductList(props) {
                     )))
                 }
             </ul>
+
             {isModalActive && (
                 <Modal
                     imageValue={imageValue}

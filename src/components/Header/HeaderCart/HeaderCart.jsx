@@ -16,7 +16,6 @@ export default function HeaderCart(props) {
     const productQuantity = headerCartProducts.length;
     let getEachProductSum = headerCartProducts.map(product => product.sum);
     let getAllProductSum  = getEachProductSum.reduce((sum, current) => sum + current, 0);
-
     let width = useWindowWidth();
 
     function handleOpenCartList() {
@@ -36,7 +35,7 @@ export default function HeaderCart(props) {
             </ul>
 
             <div
-                className={`cart ${isCartShakingAnimation ? "cart active" : ""}`}
+                className={`cart ${isCartShakingAnimation ? "active" : ""}`}
                  onClick={e => e.stopPropagation()}
                  onAnimationEnd={() => setIsCartShakingAnimation(false)}
             >

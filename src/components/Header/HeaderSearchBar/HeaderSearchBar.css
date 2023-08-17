@@ -10,7 +10,7 @@
     position: relative;
 }
 
-.input {
+.header_searchBar_input {
     display: block;
     width: 100%;
     padding: 0 10px;
@@ -20,11 +20,11 @@
     font-size: 16px;
 }
 
-.search_button {
+.search_button_wrapper {
     height: 36px;
 }
 
-.button {
+.search_button {
     background: #077915 url("../../../../public/img/searchLoupe.png") 50% no-repeat;
     width: 70px;
     height: 36px;
@@ -59,12 +59,12 @@
     background: none;
 }
 
-@media only screen and (max-width : 800px)  {
+@media (max-width: 800px)  {
     .header_row {
         justify-content: space-between;
     }
 
-    .button {
+    .search_button {
         width: 50px;
         border: 1px solid #077915;
     }
@@ -77,28 +77,22 @@
         padding: 0 0 0 15px;
     }
 
-    .input {
+    .header_searchBar_input {
         padding: 0 5px;
     }
 }
 
-@media (max-width : 480px)  {
+@media (max-width: 480px)  {
     .search_row {
         width: 100%;
     }
 
-    .header_row {
-        justify-content: space-between;
-    }
-
-    .button {
+    .search_button {
         width: 40px;
-        margin-left: 0;
+        margin-left: 3px;
         border-radius: 2px;
-        margin: 0 3px;
         background: url('../../../../public/img/search-green-mobile.png') 50%;
         border: 0;
-        width: 36px;
     }
 }
 

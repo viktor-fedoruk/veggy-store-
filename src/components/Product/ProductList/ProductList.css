@@ -10,11 +10,6 @@
     flex-wrap: wrap;
 }
 
-.productList {
-    display: flex;
-    justify-content: flex-start;
-}
-
 .no_found_product_container {
     position: relative;
     margin: auto;

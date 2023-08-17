@@ -50,9 +50,9 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                                     <p className="cartListProductSum">{`$ ${product.sum}`}</p>
                                 </div>
 
-                                <div className="removeProductBtn">
+                                <div className="remove_product_wrapper">
                                     <button
-                                        className="removeProduct"
+                                        className="remove_product_button"
                                         onClick={() => {
                                             const productItemUl = event.target.closest(".cartListProductItem");
 
@@ -67,9 +67,9 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                             </ul>))
                         }
 
-                        <div className="checkoutButton">
+                        <div className="checkout_button_wrapper">
                             <button
-                                className="checkoutBtn"
+                                className="checkout_btn"
                                 type="button"
                                 disabled
                             >
@@ -77,8 +77,8 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                             </button>
                         </div>
                     </div>
-                </div>)
-            }
+                </div>
+            )}
         </>
     )
 }

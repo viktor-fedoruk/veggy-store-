@@ -13,9 +13,9 @@ export default function Header(props) {
         setIsOpenHeaderCartModal,
         isCartShakingAnimation,
         setIsCartShakingAnimation,
-        onChangeHeaderInputValue,
-        headerProductSearchingInput,
-        setHeaderProductSearchingInput,
+        onChangeHeaderSearchBarValue,
+        headerSearchBarValue,
+        setHeaderSearchBarValue,
     } = props;
 
     const [isOpenSearchBar, setIsOpenSearchBar] = useState(true);
@@ -26,10 +26,9 @@ export default function Header(props) {
         if (isMobile) {
             setIsOpenSearchBar(false);
         }
-
     }, [width]);
 
-    function showInputOnClick() {
+    function handleIsOpenSearchBar() {
         if (isMobile) {
             setIsOpenSearchBar(true);
         }
@@ -47,21 +46,22 @@ export default function Header(props) {
                         width={width}
                         onSetOpenSearchBar={setIsOpenSearchBar}
                         isOpenSearchBar={isOpenSearchBar}
-                        onShowInputOnClick={showInputOnClick}
-                        onChangeHeaderInputValue={onChangeHeaderInputValue}
-                        headerProductSearchingInput={headerProductSearchingInput}
-                        setHeaderProductSearchingInput={setHeaderProductSearchingInput}
+                        onHandleIsOpenSearchBar={handleIsOpenSearchBar}
+                        onChangeHeaderSearchBarValue={onChangeHeaderSearchBarValue}
+                        headerSearchBarValue={headerSearchBarValue}
+                        setHeaderSearchBarValue={setHeaderSearchBarValue}
                     />
 
                     {(!isMobile || isMobile && !isOpenSearchBar) && (
                         <HeaderCart
-                        isOpenHeaderCartModal={isOpenHeaderCartModal}
-                        setIsOpenHeaderCartModal={setIsOpenHeaderCartModal}
-                        headerCartProducts={headerCartProducts}
-                        setHeaderCartProducts={setHeaderCartProducts}
-                        setIsCartShakingAnimation={setIsCartShakingAnimation}
-                        isCartShakingAnimation={isCartShakingAnimation}
-                    />)}
+                            isOpenHeaderCartModal={isOpenHeaderCartModal}
+                            setIsOpenHeaderCartModal={setIsOpenHeaderCartModal}
+                            headerCartProducts={headerCartProducts}
+                            setHeaderCartProducts={setHeaderCartProducts}
+                            setIsCartShakingAnimation={setIsCartShakingAnimation}
+                            isCartShakingAnimation={isCartShakingAnimation}
+                        />
+                    )}
                 </div>
             </div>
         </div>

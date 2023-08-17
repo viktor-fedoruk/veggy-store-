@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header/Header.jsx';
 import ProductList from './components/Product/ProductList/ProductList.jsx';
-import Spinner from "./components/Product/Spinner/Spinner.jsx";
+import Spinner from "./components/Spinner/Spinner.jsx";
 import './App.css';
 import './components/Header/HeaderCart/CartList/CartList.css';
 
@@ -38,22 +38,22 @@ export default function App() {
         getProducts();
     }, []);
 
-    function handleChangeInputValue(e) {
+    function handleChangeHeaderSearchBarValue(e) {
         setSearchedProductName(e.target.value);
     }
 
     return (
         <div className="container">
             <Header
-                onChangeHeaderInputValue={handleChangeInputValue}
+                onChangeHeaderSearchBarValue={handleChangeHeaderSearchBarValue}
                 isOpenHeaderCartModal={isOpenHeaderCartModal}
                 setIsOpenHeaderCartModal={setIsOpenHeaderCartModal}
                 headerCartProducts={headerCartProducts}
                 setHeaderCartProducts={setHeaderCartProducts}
                 setIsCartShakingAnimation={setIsCartShakingAnimation}
                 isCartShakingAnimation={isCartShakingAnimation}
-                headerProductSearchingInput={searchedProductName}
-                setheaderProductSearchingInput={setSearchedProductName}
+                headerSearchBarValue={searchedProductName}
+                setHeaderSearchBarValue={setSearchedProductName}
             />
 
             {isLoadingProducts ? (

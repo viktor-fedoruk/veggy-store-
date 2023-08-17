@@ -122,11 +122,11 @@
     font-weight: 700;
 }
 
-.removeProductBtn {
+.remove_product_wrapper {
     margin: 0 0 0 5px;
 }
 
-.removeProduct {
+.remove_product_button {
     height: 24px;
     border-radius: 2px;
     line-height: 24px;
@@ -137,16 +137,16 @@
     background: none;
 }
 
-.removeProduct:hover {
+.remove_product_button:hover {
     transition: 0.3s;
     color: red;
 }
 
-.checkoutButton {
+.checkout_button_wrapper {
     padding: 10px;
 }
 
-.checkoutBtn {
+.checkout_button {
     height: 36px;
     border-radius: 2px;
     text-align: center;
