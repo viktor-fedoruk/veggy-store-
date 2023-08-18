@@ -7,27 +7,29 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
         <>
             {isOpenHeaderCartModal && (
                 <div className="cartListContainer">
-                    <div
+                    <ul
                         className="cartListRow"
                         onClick={e => e.stopPropagation()}
                     >
-                        <div className={`emptyCartImageRow ${headerCartProducts.length > 0 ? "disable" : ""}`}>
-                            <img
-                                className="emptyCartImage"
-                                src={emptyCartImg}
-                                alt="emptyCartImage"
-                            />
-                            <h2 className="cartInfo">Your Cart is Empty!</h2>
-                        </div>
+                        {headerCartProducts.length <= 0 && (
+                            <div className="emptyCartImageRow">
+                                <img
+                                    className="emptyCartImage"
+                                    src={emptyCartImg}
+                                    alt="emptyCartImage"
+                                />
+                                <h2 className="cartInfo">Your Cart is Empty!</h2>
+                            </div>
+                        )}
 
                         {headerCartProducts.map(product => (
-                            <ul className="cartListProductItem"
+                            <li className="cartListProductItem"
                                 key={product.id}
                                 id={product.id}
                                 onAnimationEnd={() => {
                                     setHeaderCartProducts(
-                                        headerCartProducts.filter(a =>
-                                            a.id !== product.id
+                                        headerCartProducts.filter(item =>
+                                            item.id !== product.id
                                         )
                                     );
                                 }}
@@ -64,7 +66,7 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                                         ×
                                     </button>
                                 </div>
-                            </ul>))
+                            </li>))
                         }
 
                         {headerCartProducts.length > 0 && (
@@ -78,7 +80,7 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                                 </button>
                              </div>
                         )}
-                    </div>
+                    </ul>
                 </div>
             )}
         </>
