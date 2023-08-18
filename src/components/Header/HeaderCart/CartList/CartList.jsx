@@ -67,15 +67,17 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                             </ul>))
                         }
 
-                        <div className="checkout_button_wrapper">
-                            <button
-                                className="checkout_btn"
-                                type="button"
-                                disabled
-                            >
-                                PROCEED TO CHECKOUT
-                            </button>
-                        </div>
+                        {headerCartProducts.length > 0 && (
+                            <div className="checkout_button_wrapper">
+                                <button
+                                    className="checkout_button"
+                                    type="button"
+                                    disabled
+                                >
+                                    PROCEED TO CHECKOUT
+                                </button>
+                             </div>
+                        )}
                     </div>
                 </div>
             )}

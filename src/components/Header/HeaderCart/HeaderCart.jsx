@@ -18,8 +18,8 @@ export default function HeaderCart(props) {
     let getAllProductSum  = getEachProductSum.reduce((sum, current) => sum + current, 0);
     let width = useWindowWidth();
 
-    function handleOpenCartList() {
-        setIsOpenHeaderCartModal(() => !isOpenHeaderCartModal);
+    function handleToggleIsOpenCartList() {
+        setIsOpenHeaderCartModal((isOpenHeaderCartModal) => !isOpenHeaderCartModal);
     }
 
     return (
@@ -46,7 +46,7 @@ export default function HeaderCart(props) {
                 <span className='cart_icon'>
                     <img
                         src={CartImg}
-                        onClick={handleOpenCartList}
+                        onClick={handleToggleIsOpenCartList}
                         alt="Cart Icon"
                     />
                 </span>
