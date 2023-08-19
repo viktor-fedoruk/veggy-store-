@@ -1,0 +1,33 @@
+.header {
+    background: white;
+    max-width: 100%;
+    padding: 30px 30px;
+}
+
+.header_container {
+    max-width: 960px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.header_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+@media (max-width: 800px)  {
+    .header {
+        padding: 15px 15px;
+    }
+}
+
+@media (max-width: 480px)  {
+    .header {
+        padding: 15px 5px ;
+    }
+
+    .header_container {
+        padding: 10px 5px;
+    }
+}

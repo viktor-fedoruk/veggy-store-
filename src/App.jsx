@@ -1,60 +1,72 @@
-import './assets/cssStyle/App.css'
-import './components/VeggyHeader/HeaderCart/CartList/CartList.css'
-import Header from "./components/VeggyHeader/VeggyHeader.jsx";
-import {useEffect, useState} from "react";
-import VeggyBody from "./components/VeggyBody/VeggyBody.jsx";
+import { useEffect, useState } from 'react';
+import Header from './components/Header/Header.jsx';
+import ProductList from './components/Product/ProductList/ProductList.jsx';
+import Spinner from "./components/Spinner/Spinner.jsx";
+import './App.css';
+import './components/Header/HeaderCart/CartList/CartList.css';
 
-function App() {
-    const [shakingCart, setShakingCart] = useState(false);
+export default function App() {
+    const [isCartShakingAnimation, setIsCartShakingAnimation] = useState(false);
     const [products, setProducts] = useState([]);
-    const [addProduct, setAddProduct] = useState([]);
-    const [inputText, setInputText] = useState('');
-    const [modalActive, setModalActive] = useState(false);
-
-
-    function getInputValue(e) {
-        setInputText(e.target.value)
-    }
-
-    console.log('teddst');
+    const [headerCartProducts, setHeaderCartProducts] = useState([]);
+    const [searchedProductName, setSearchedProductName] = useState('');
+    const [isOpenHeaderCartModal,setIsOpenHeaderCartModal] = useState(false);
+    const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
     useEffect(() => {
-        async function getProduct () {
-            const response = await fetch('http://localhost:3001/vegs');
-            const responseJson = await response.json();
+        async function getProducts() {
+            try {
+                setIsLoadingProducts(true);
 
+                const response = await fetch('http://localhost:3001/vegs');
 
-            if (responseJson) {
-                setProducts(responseJson)
+                if (!response.ok) {
+                    const message = `An error has occured: ${response.status}`;
+                    throw new Error(message);
+                }
+
+                const result = await response.json();
+
+                setProducts(result);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setIsLoadingProducts(false);
             }
         }
 
-        getProduct()
-
+        getProducts();
     }, []);
 
+    function handleChangeHeaderSearchBarValue(e) {
+        setSearchedProductName(e.target.value);
+    }
 
     return (
-        <div className='VeggyContainer' onClick={() => setModalActive(false)}>
-            <Header getInputValue={getInputValue}
-                    modalActive={modalActive}
-                    setModalActive={setModalActive}
+        <div className="container">
+            <Header
+                onChangeHeaderSearchBarValue={handleChangeHeaderSearchBarValue}
+                isOpenHeaderCartModal={isOpenHeaderCartModal}
+                setIsOpenHeaderCartModal={setIsOpenHeaderCartModal}
+                headerCartProducts={headerCartProducts}
+                setHeaderCartProducts={setHeaderCartProducts}
+                setIsCartShakingAnimation={setIsCartShakingAnimation}
+                isCartShakingAnimation={isCartShakingAnimation}
+                headerSearchBarValue={searchedProductName}
+                setHeaderSearchBarValue={setSearchedProductName}
+            />
+
+            {isLoadingProducts ? (
+                <Spinner />
+            ) : (
+                <ProductList
+                    searchedProductName={searchedProductName}
                     products={products}
-                    addProduct={addProduct}
-                    setAddProduct={setAddProduct}
-                    setShakingCart={setShakingCart}
-                    shakingCart={shakingCart}
-            />
-            <VeggyBody
-                inputText={inputText}
-                products={products}
-                addProduct={addProduct}
-                setAddProduct={setAddProduct}
-                setShakingCart={setShakingCart}
-                shakingCart={shakingCart}
-            />
+                    cartProducts={headerCartProducts}
+                    setCartProducts={setHeaderCartProducts}
+                    setIsCartShakingAnimation={setIsCartShakingAnimation}
+                />
+            )}
         </div>
     )
 }
-
-export default App;

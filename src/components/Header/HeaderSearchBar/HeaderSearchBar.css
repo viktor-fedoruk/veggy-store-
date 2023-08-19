@@ -1,0 +1,98 @@
+.search_row {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    width: 400px;
+}
+
+.search_product {
+    width: 100%;
+    position: relative;
+}
+
+.header_searchBar_input {
+    display: block;
+    width: 100%;
+    padding: 0 10px;
+    height: 36px;
+    border: 1px solid #077915;
+    border-radius: 2px 0 0 2px;
+    font-size: 16px;
+}
+
+.search_button_wrapper {
+    height: 36px;
+}
+
+.search_button {
+    background: #077915 url("../../../../public/img/searchLoupe.png") 50% no-repeat;
+    width: 70px;
+    height: 36px;
+    border-radius: 0 2px 2px 0;
+    text-align: center;
+    color: #fff;
+    border: 0;
+    font-weight: 400;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.prevButton img {
+    cursor: pointer;
+}
+
+.cleaning_input {
+    position: absolute;
+    top: 6px;
+    right: 2px;
+    height: 24px;
+    border-radius: 2px;
+    line-height: 24px;
+    width: 24px;
+    font-size: 22px;
+    color: #ccc;
+    text-align: center;
+    background: none;
+}
+
+@media (max-width: 800px)  {
+    .header_row {
+        justify-content: space-between;
+    }
+
+    .search_button {
+        width: 50px;
+        border: 1px solid #077915;
+    }
+
+    .cart_info {
+        display: none;
+    }
+
+    .cart {
+        padding: 0 0 0 15px;
+    }
+
+    .header_searchBar_input {
+        padding: 0 5px;
+    }
+}
+
+@media (max-width: 480px)  {
+    .search_row {
+        width: 100%;
+    }
+
+    .search_button {
+        width: 40px;
+        margin-left: 3px;
+        border-radius: 2px;
+        background: url('../../../../public/img/search-green-mobile.png') 50%;
+        border: 0;
+    }
+}
+
