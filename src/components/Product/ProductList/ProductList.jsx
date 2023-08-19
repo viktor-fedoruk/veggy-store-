@@ -27,9 +27,9 @@ export default function ProductList(props) {
         );
 
         setImageValue({
-            src : e.target.src,
-            name : getProductInfo.name,
-            price : getProductInfo.price,
+            src: e.target.src,
+            name: getProductInfo.name,
+            price: getProductInfo.price,
         });
     }
 

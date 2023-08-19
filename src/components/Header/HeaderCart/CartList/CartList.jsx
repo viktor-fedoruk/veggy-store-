@@ -11,7 +11,7 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                         className="cartListRow"
                         onClick={e => e.stopPropagation()}
                     >
-                        {headerCartProducts.length <= 0 && (
+                        {headerCartProducts.length === 0 && (
                             <div className="emptyCartImageRow">
                                 <img
                                     className="emptyCartImage"
@@ -55,9 +55,8 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                                 <div className="remove_product_wrapper">
                                     <button
                                         className="remove_product_button"
-                                        onClick={() => {
+                                        onClick={(event) => {
                                             const productItemUl = event.target.closest(".cartListProductItem");
-
                                             if (productItemUl) {
                                                 productItemUl.classList.add("active");
                                             }
@@ -66,8 +65,8 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                                         ×
                                     </button>
                                 </div>
-                            </li>))
-                        }
+                            </li>
+                        ))}
 
                         {headerCartProducts.length > 0 && (
                             <div className="checkout_button_wrapper">
