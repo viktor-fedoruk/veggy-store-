@@ -14,10 +14,6 @@
 .cartListContainer:after {
     content: "";
     position: absolute;
-    display: block;
-    width: 0;
-    height: 0;
-    z-index: 1;
     top: -7px;
     right: 9px;
     border-left: 7px solid transparent;
