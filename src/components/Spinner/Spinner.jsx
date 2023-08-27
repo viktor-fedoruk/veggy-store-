@@ -2,8 +2,6 @@ import { RotatingLines } from  'react-loader-spinner';
 import "./Spinner.css";
 
 export default function Spinner() {
-    console.log("test");
-
     return (
         <div className="rotatingSpinner">
             <RotatingLines
