@@ -37,7 +37,8 @@ export default function ProductList(props) {
         <div className="productContainer">
             <ul className="productList">
                 {filterProductsItem.length === 0 ? (
-                    <div className="no_found_product_container">
+                    <div className="no_found_product_container"
+                    >
                         <img
                             src={NoFoundProductImg}
                             alt="No-Found-Product-Img"
@@ -60,11 +61,14 @@ export default function ProductList(props) {
             {isModalActive && (
                 <Modal
                     imageValue={imageValue}
-                    setIsModalActive={setIsModalActive}
+                    isOpen={() => setIsModalActive(true)}
+                    onClose={() => setIsModalActive(false)}
+                    portalClassName="body"
+                    classNameWrapper="product_list_row"
+                    classNameContent="watch_product_item"
                 >
                     <div
                         className="contentRow"
-                        onClick={e => e.stopPropagation()}
                     >
                         <div className="modalQuickWatchProductImage">
                             <img

@@ -1,12 +1,24 @@
-import './CartList.css';
-import '../HeaderCart.css';
-import emptyCartImg from '../../../../../public/img/empty-cart.png';
+import Modal from "../../../Modal/Modal.jsx";
+import "./CartList.css";
+import "../HeaderCart.css";
+import emptyCartImg from "../../../../../public/img/empty-cart.png";
 
-export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, setHeaderCartProducts }) {
+export default function CartList(props) {
+    const {
+        isOpenHeaderCartModal,
+        setIsOpenHeaderCartModal,
+        headerCartProducts,
+        setHeaderCartProducts,
+    } = props;
+
     return (
         <>
             {isOpenHeaderCartModal && (
-                <div className="cartListContainer">
+                <Modal
+                    onClose={() => setIsOpenHeaderCartModal(false)}
+                    portalClassName="cart"
+                    classNameContent="cartListContainer"
+                >
                     <ul
                         className="cartListRow"
                         onClick={e => e.stopPropagation()}
@@ -47,7 +59,7 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                                     <p className="cartListProductPrice">{`$ ${product.price}`}</p>
                                 </div>
 
-                                <div className="cartListProductQuantity-Sum">
+                                <div>
                                     <p className="cartListProductQuantity">{`${product.quantity} No.`}</p>
                                     <p className="cartListProductSum">{`$ ${product.sum}`}</p>
                                 </div>
@@ -57,6 +69,7 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                                         className="remove_product_button"
                                         onClick={(event) => {
                                             const productItemUl = event.target.closest(".cartListProductItem");
+
                                             if (productItemUl) {
                                                 productItemUl.classList.add("active");
                                             }
@@ -77,10 +90,10 @@ export  default function CartList({ isOpenHeaderCartModal, headerCartProducts, s
                                 >
                                     PROCEED TO CHECKOUT
                                 </button>
-                             </div>
+                            </div>
                         )}
                     </ul>
-                </div>
+                </Modal>
             )}
         </>
     )

@@ -1,11 +1,42 @@
-export default function Modal({ setIsModalActive, children }) {
-    return (
+import { createPortal } from "react-dom";
+import { useEffect, useRef } from "react";
+
+export default function Modal(props){
+    const {
+        onClose,
+        children,
+        portalClassName,
+        classNameWrapper,
+        classNameContent,
+    } = props;
+
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        document.addEventListener("click", closeModalWindow, true);
+
+        return () => {
+            document.removeEventListener("click", closeModalWindow, true);
+        }
+    },[]);
+
+    function closeModalWindow(e) {
+        if (modalRef.current && !modalRef.current.contains(e.target)) {
+            onClose();
+        }
+    }
+
+    return createPortal(
         <div
-            onClick={() => setIsModalActive(false)}
-            className="modalWatchProductContainer"
+            className={`${classNameWrapper}`}
         >
-            <div className="modalWatchProductRow">{children}</div>
-        </div>
+            <div
+                ref={modalRef}
+                className={`${classNameContent}`}
+            >
+                {children}
+            </div>
+        </div>,
+        document.querySelector(`.${portalClassName}`)
     )
 }
-

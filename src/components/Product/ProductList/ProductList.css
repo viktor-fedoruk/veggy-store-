@@ -24,17 +24,12 @@
     max-height: 315px;
 }
 
-.modalWatchProductContainer{
+.product_list_row {
     position: fixed;
-    width: 100%;
-    height: 100%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     background: rgba(0,0,0,.66);
-}
-
-.modalWatchProductRow {
     height: 100%;
     width: 100%;
     display: flex;

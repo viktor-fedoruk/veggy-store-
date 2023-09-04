@@ -10,7 +10,7 @@ export default function App() {
     const [products, setProducts] = useState([]);
     const [headerCartProducts, setHeaderCartProducts] = useState([]);
     const [searchedProductName, setSearchedProductName] = useState('');
-    const [isOpenHeaderCartModal,setIsOpenHeaderCartModal] = useState(false);
+    const [isOpenHeaderCartModal, setIsOpenHeaderCartModal] = useState(false);
     const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
     useEffect(() => {

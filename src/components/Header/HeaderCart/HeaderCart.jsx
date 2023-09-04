@@ -1,14 +1,14 @@
 import useWindowWidth from "../../../../hooks/useWindowResize.js";
 import CartList from "./CartList/CartList.jsx";
-import './HeaderCart.css';
+import "./HeaderCart.css";
 import CartImg from "../../../../public/img/cart.png";
 
 export default function HeaderCart(props) {
     const {
         headerCartProducts,
         setHeaderCartProducts,
-        setIsOpenHeaderCartModal,
         isOpenHeaderCartModal,
+        setIsOpenHeaderCartModal,
         isCartShakingAnimation,
         setIsCartShakingAnimation,
     } = props;
@@ -56,6 +56,7 @@ export default function HeaderCart(props) {
                 isOpenHeaderCartModal={isOpenHeaderCartModal}
                 headerCartProducts={headerCartProducts}
                 setHeaderCartProducts={setHeaderCartProducts}
+                setIsOpenHeaderCartModal={setIsOpenHeaderCartModal}
             />
         </div>
     )

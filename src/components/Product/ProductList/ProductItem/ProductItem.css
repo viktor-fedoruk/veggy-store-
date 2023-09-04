@@ -134,7 +134,7 @@ input::-webkit-inner-spin-button {
     }
 
     .addButtonWrapper {
-        padding: 5px 15px;
+        padding: 5px 15px 10px;
     }
 
     .productPrice {
