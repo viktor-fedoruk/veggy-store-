@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import Header from './components/Header/Header.jsx';
 import ProductList from './components/Product/ProductList/ProductList.jsx';
 import Spinner from "./components/Spinner/Spinner.jsx";

@@ -28,7 +28,7 @@ export default function Modal(props){
 
     return createPortal(
         <div
-            className={`modal ${classNameWrapper}`}
+            className={`${classNameWrapper}`}
         >
             <div
                 ref={modalRef}
