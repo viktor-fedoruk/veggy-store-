@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState} from 'react';
 import Header from './components/Header/Header.jsx';
 import ProductList from './components/Product/ProductList/ProductList.jsx';
 import Spinner from "./components/Spinner/Spinner.jsx";
@@ -10,7 +10,7 @@ export default function App() {
     const [products, setProducts] = useState([]);
     const [headerCartProducts, setHeaderCartProducts] = useState([]);
     const [searchedProductName, setSearchedProductName] = useState('');
-    const [isOpenHeaderCartModal,setIsOpenHeaderCartModal] = useState(false);
+    const [isOpenHeaderCartModal, setIsOpenHeaderCartModal] = useState(false);
     const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
     useEffect(() => {
