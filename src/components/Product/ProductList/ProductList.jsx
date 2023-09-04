@@ -34,8 +34,7 @@ export default function ProductList(props) {
     }
 
     return (
-        <div
-            className="productContainer">
+        <div className="productContainer">
             <ul className="productList">
                 {filterProductsItem.length === 0 ? (
                     <div className="no_found_product_container"
