@@ -4,6 +4,7 @@ import ProductList from './components/Product/ProductList/ProductList.jsx';
 import Spinner from "./components/Spinner/Spinner.jsx";
 import './App.css';
 import './components/Header/HeaderCart/CartList/CartList.css';
+import useGetUrl from "../hooks/useGetUrl.js";
 
 export default function App() {
     const [isCartShakingAnimation, setIsCartShakingAnimation] = useState(false);
@@ -12,31 +13,7 @@ export default function App() {
     const [searchedProductName, setSearchedProductName] = useState('');
     const [isOpenHeaderCartModal, setIsOpenHeaderCartModal] = useState(false);
     const [isLoadingProducts, setIsLoadingProducts] = useState(false);
-
-    useEffect(() => {
-        async function getProducts() {
-            try {
-                setIsLoadingProducts(true);
-
-                const response = await fetch('http://localhost:3001/vegs');
-
-                if (!response.ok) {
-                    const message = `An error has occured: ${response.status}`;
-                    throw new Error(message);
-                }
-
-                const result = await response.json();
-
-                setProducts(result);
-            } catch (error) {
-                console.log(error);
-            } finally {
-                setIsLoadingProducts(false);
-            }
-        }
-
-        getProducts();
-    }, []);
+    const getProductFromServer = useGetUrl('http://localhost:3001/vegs', setIsLoadingProducts, setProducts);
 
     function handleChangeHeaderSearchBarValue(e) {
         setSearchedProductName(e.target.value);
