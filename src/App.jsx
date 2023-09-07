@@ -1,19 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import useGetProducts from "../hooks/useGetProducts.js";
 import Header from './components/Header/Header.jsx';
 import ProductList from './components/Product/ProductList/ProductList.jsx';
 import Spinner from "./components/Spinner/Spinner.jsx";
 import './App.css';
 import './components/Header/HeaderCart/CartList/CartList.css';
-import useGetUrl from "../hooks/useGetUrl.js";
 
 export default function App() {
     const [isCartShakingAnimation, setIsCartShakingAnimation] = useState(false);
-    const [products, setProducts] = useState([]);
     const [headerCartProducts, setHeaderCartProducts] = useState([]);
     const [searchedProductName, setSearchedProductName] = useState('');
     const [isOpenHeaderCartModal, setIsOpenHeaderCartModal] = useState(false);
-    const [isLoadingProducts, setIsLoadingProducts] = useState(false);
-    const getProductFromServer = useGetUrl('http://localhost:3001/vegs', setIsLoadingProducts, setProducts);
+    const {products, isLoadingProducts} = useGetProducts();
 
     function handleChangeHeaderSearchBarValue(e) {
         setSearchedProductName(e.target.value);
