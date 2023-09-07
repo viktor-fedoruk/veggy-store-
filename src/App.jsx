@@ -11,7 +11,7 @@ export default function App() {
     const [headerCartProducts, setHeaderCartProducts] = useState([]);
     const [searchedProductName, setSearchedProductName] = useState('');
     const [isOpenHeaderCartModal, setIsOpenHeaderCartModal] = useState(false);
-    const {products, isLoadingProducts} = useGetProducts();
+    const [products, isLoadingProducts] = useGetProducts();
 
     function handleChangeHeaderSearchBarValue(e) {
         setSearchedProductName(e.target.value);

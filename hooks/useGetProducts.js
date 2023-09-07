@@ -29,6 +29,6 @@ export default function useGetProducts() {
         getUrl();
     }, []);
 
-    return {products, isLoadingProducts}
+    return [products, isLoadingProducts]
 }
 
