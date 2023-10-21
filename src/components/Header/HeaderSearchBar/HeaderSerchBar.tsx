@@ -1,7 +1,18 @@
-import './HeaderSearchBar.css';
-import backArrow from '../../../../public/img/back-arrow.png';
+import React, { FC } from "react";
+import "./HeaderSearchBar.css";
+import backArrow from "../../../../public/img/back-arrow.png";
 
-export default function HeaderSearchBar(props) {
+interface HeaderSearchBarProps {
+    width: number;
+    onSetOpenSearchBar: (isOpen: boolean) => void,
+    isOpenSearchBar: boolean,
+    onHandleIsOpenSearchBar: () => void,
+    onChangeHeaderSearchBarValue: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    headerSearchBarValue: string,
+    setHeaderSearchBarValue: (value: string) => void,
+}
+
+const HeaderSearchBar: FC <HeaderSearchBarProps> = (props) => {
     const {
         width,
         onSetOpenSearchBar,
@@ -12,10 +23,14 @@ export default function HeaderSearchBar(props) {
         setHeaderSearchBarValue,
     } = props;
 
-    function cleaningInputText() {
-        document.getElementById('search_product').value = '';
+    function cleaningInputText(): void {
+        const searchInput = document.getElementById('search_product') as HTMLInputElement || null;
 
-        setHeaderSearchBarValue('');
+        if (searchInput) {
+            searchInput.value = "";
+
+            setHeaderSearchBarValue('');
+        }
     }
 
     return (
@@ -63,3 +78,5 @@ export default function HeaderSearchBar(props) {
         </div>
     )
 }
+
+export default HeaderSearchBar;

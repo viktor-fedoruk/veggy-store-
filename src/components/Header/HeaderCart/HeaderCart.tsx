@@ -1,9 +1,20 @@
-import useWindowWidth from "../../../../hooks/useWindowResize.js";
-import CartList from "./CartList/CartList.jsx";
+import { FC } from "react";
+import useWindowWidth from "../../../../hooks/useWindowResize";
+import CartList from "./CartList/CartList";
+import { iCartProducts } from "../../../../types/data";
 import "./HeaderCart.css";
 import CartImg from "../../../../public/img/cart.png";
 
-export default function HeaderCart(props) {
+interface HeaderCartProps {
+    headerCartProducts: iCartProducts[],
+    setHeaderCartProducts: (productList: iCartProducts[]) => void,
+    isOpenHeaderCartModal: boolean,
+    setIsOpenHeaderCartModal: (isOpen: boolean) => void,
+    isCartShakingAnimation: boolean,
+    setIsCartShakingAnimation: (isShaking: boolean) => void,
+}
+
+const HeaderCart: FC <HeaderCartProps> = (props) => {
     const {
         headerCartProducts,
         setHeaderCartProducts,
@@ -13,13 +24,19 @@ export default function HeaderCart(props) {
         setIsCartShakingAnimation,
     } = props;
 
-    const productQuantity = headerCartProducts.length;
-    let getEachProductSum = headerCartProducts.map(product => product.sum);
-    let getAllProductSum  = getEachProductSum.reduce((sum, current) => sum + current, 0);
-    let width = useWindowWidth();
+    const productQuantity: number = headerCartProducts.length;
+    const getEachProductSum: (number | undefined)[] = headerCartProducts.map(product => product.sum);
+    const getAllProductSum: number | undefined = getEachProductSum.reduce((sum, current) => {
+        if (typeof sum === "number") {
+            return sum + (current as number || 0);
+        } else {
+            return sum;
+        }
+    }, 0);
+    const width: number = useWindowWidth();
 
-    function handleToggleIsOpenCartList() {
-        setIsOpenHeaderCartModal((isOpenHeaderCartModal) => !isOpenHeaderCartModal);
+    function handleToggleIsOpenCartList(): void {
+        setIsOpenHeaderCartModal(!isOpenHeaderCartModal);
     }
 
     return (
@@ -61,3 +78,5 @@ export default function HeaderCart(props) {
         </div>
     )
 }
+
+export default HeaderCart;

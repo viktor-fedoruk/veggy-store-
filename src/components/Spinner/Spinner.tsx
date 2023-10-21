@@ -1,7 +1,8 @@
+import { FC } from "react";
 import { RotatingLines } from  'react-loader-spinner';
 import "./Spinner.css";
 
-export default function Spinner() {
+const Spinner: FC = () => {
     return (
         <div className="rotatingSpinner">
             <RotatingLines
@@ -14,3 +15,5 @@ export default function Spinner() {
         </div>
     )
 }
+
+export default Spinner;

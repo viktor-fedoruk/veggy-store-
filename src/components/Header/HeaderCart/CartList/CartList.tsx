@@ -1,9 +1,18 @@
-import Modal from "../../../Modal/Modal.jsx";
+import React, { FC } from "react";
+import Modal from "../../../Modal/Modal"
+import { iCartProducts } from "../../../../../types/data";
 import "./CartList.css";
 import "../HeaderCart.css";
 import emptyCartImg from "../../../../../public/img/empty-cart.png";
 
-export default function CartList(props) {
+interface CartListProps {
+    isOpenHeaderCartModal: boolean,
+    setIsOpenHeaderCartModal: (isOpen: boolean) => void,
+    headerCartProducts: iCartProducts[],
+    setHeaderCartProducts: (productList: iCartProducts[]) => void,
+}
+
+const CartList: FC <CartListProps> = (props) => {
     const {
         isOpenHeaderCartModal,
         setIsOpenHeaderCartModal,
@@ -37,7 +46,7 @@ export default function CartList(props) {
                         {headerCartProducts.map(product => (
                             <li className="cartListProductItem"
                                 key={product.id}
-                                id={product.id}
+                                id={product.id.toString()}
                                 onAnimationEnd={() => {
                                     setHeaderCartProducts(
                                         headerCartProducts.filter(item =>
@@ -67,8 +76,8 @@ export default function CartList(props) {
                                 <div className="remove_product_wrapper">
                                     <button
                                         className="remove_product_button"
-                                        onClick={(event) => {
-                                            const productItemUl = event.target.closest(".cartListProductItem");
+                                        onClick={(event ) => {
+                                            const productItemUl = (event.target as HTMLElement).closest(".cartListProductItem");
 
                                             if (productItemUl) {
                                                 productItemUl.classList.add("active");
@@ -99,3 +108,4 @@ export default function CartList(props) {
     )
 }
 
+export default CartList;

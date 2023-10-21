@@ -1,11 +1,24 @@
-import { useEffect, useState } from "react";
-import useWindowWidth from "../../../hooks/useWindowResize.js";
-import HeaderLogo from "./HeaderLogo/HeaderLogo.jsx";
-import HeaderSearchBar from "./HeaderSearchBar/HeaderSerchBar.jsx";
-import HeaderCart from "./HeaderCart/HeaderCart.jsx";
-import './Header.css';
+import React, { FC, useEffect, useState } from "react";
+import useWindowWidth from "../../../hooks/useWindowResize";
+import HeaderLogo from "./HeaderLogo/HeaderLogo";
+import HeaderSearchBar from "./HeaderSearchBar/HeaderSerchBar";
+import HeaderCart from "./HeaderCart/HeaderCart";
+import { iCartProducts } from "../../../types/data";
+import "./Header.css";
 
-export default function Header(props) {
+interface HeaderProps {
+    headerCartProducts: iCartProducts[],
+    setHeaderCartProducts: (productList: iCartProducts[]) => void,
+    isOpenHeaderCartModal: boolean,
+    setIsOpenHeaderCartModal: (isOpen: boolean) => void,
+    isCartShakingAnimation: boolean,
+    setIsCartShakingAnimation: (isShaking: boolean) => void,
+    onChangeHeaderSearchBarValue: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    headerSearchBarValue: string,
+    setHeaderSearchBarValue: (value: string) => void,
+}
+
+const Header: FC <HeaderProps> = (props) => {
     const {
         headerCartProducts,
         setHeaderCartProducts,
@@ -18,17 +31,17 @@ export default function Header(props) {
         setHeaderSearchBarValue,
     } = props;
 
-    const [isOpenSearchBar, setIsOpenSearchBar] = useState(true);
-    const width = useWindowWidth();
-    const isMobile = width <= 480;
+    const [isOpenSearchBar, setIsOpenSearchBar] = useState<boolean>(true);
+    const width: number = useWindowWidth();
+    const isMobile: boolean = width <= 480;
 
-    useEffect(() => {
+    useEffect((): void => {
         if (isMobile) {
             setIsOpenSearchBar(false);
         }
     }, [width]);
 
-    function handleIsOpenSearchBar() {
+    function handleIsOpenSearchBar(): void {
         if (isMobile) {
             setIsOpenSearchBar(true);
         }
@@ -67,3 +80,5 @@ export default function Header(props) {
         </div>
     )
 }
+
+export default Header;

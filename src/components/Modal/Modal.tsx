@@ -1,7 +1,15 @@
+import React, { FC, ReactNode, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { useEffect, useRef } from "react";
 
-export default function Modal(props){
+interface ModalProps {
+    onClose: (value: boolean) => void;
+    children: ReactNode,
+    portalClassName?: string,
+    classNameWrapper?: string,
+    classNameContent?: string,
+}
+
+const Modal: FC <ModalProps> = (props) => {
     const {
         onClose,
         children,
@@ -10,7 +18,7 @@ export default function Modal(props){
         classNameContent,
     } = props;
 
-    const modalRef = useRef(null);
+    const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         document.addEventListener("click", closeModalWindow, true);
@@ -20,9 +28,9 @@ export default function Modal(props){
         }
     },[]);
 
-    function closeModalWindow(e) {
-        if (modalRef.current && !modalRef.current.contains(e.target)) {
-            onClose();
+    function closeModalWindow(e: MouseEvent): void {
+        if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+            onClose(false);
         }
     }
 
@@ -37,6 +45,8 @@ export default function Modal(props){
                 {children}
             </div>
         </div>,
-        document.querySelector(`.${portalClassName}`)
+        document.querySelector(`.${portalClassName}`)!
     )
 }
+
+export default Modal;

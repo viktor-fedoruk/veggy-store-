@@ -1,10 +1,19 @@
-import { useState } from "react";
-import ProductItem from "./ProductItem/ProductItem.jsx";
-import Modal from "../../Modal/Modal.jsx";
+import React, { FC, useState } from "react";
+import ProductItem from "./ProductItem/ProductItem";
+import Modal from "../../Modal/Modal";
+import { iCartProducts, imageSrc } from "../../../../types/data";
 import "./ProductList.css";
 import NoFoundProductImg from "../../../../public/img/no-product-found.png";
 
-export default function ProductList(props) {
+interface ProductListProps {
+    products: iCartProducts[],
+    searchedProductName: string,
+    cartProducts: iCartProducts[],
+    setCartProducts: (cartList: iCartProducts[]) => void,
+    setIsCartShakingAnimation: (isShaking: boolean) => void,
+}
+
+const ProductList: FC <ProductListProps> = (props) => {
     const {
         products,
         searchedProductName,
@@ -13,24 +22,31 @@ export default function ProductList(props) {
         setIsCartShakingAnimation,
     } = props;
 
-    const [isModalActive, setIsModalActive] = useState(false);
-    const [imageValue, setImageValue] = useState({ src: null, name: null, price: null });
-    const filterProductsItem = products.filter(product => product.name.toLowerCase().startsWith(searchedProductName.toLowerCase()));
+    const [isModalActive, setIsModalActive] = useState<boolean>(false);
+    const [imageValue, setImageValue] = useState<imageSrc>({ src: "", name: "", price: null });
+    const filterProductsItem: iCartProducts[] = products.filter(product => product.name.toLowerCase().startsWith(searchedProductName.toLowerCase()));
 
-    function zoomProductImage (e) {
+    function zoomProductImage (e: React.MouseEvent<HTMLElement>): void {
         setIsModalActive(isModalActive => !isModalActive);
+        const imageElement = e.target as HTMLImageElement;
 
-        const parentNode = e.target.closest('.productItem');
-        let getProductId = parentNode.id;
-        let getProductInfo = products.find(product =>
-            product.id === parseInt(getProductId)
-        );
+        const parentNode = (e.target as HTMLElement).closest('.productItem');
+        const getProductId = parentNode?.id;
 
-        setImageValue({
-            src: e.target.src,
-            name: getProductInfo.name,
-            price: getProductInfo.price,
-        });
+        let getProductInfo;
+        if (getProductId) {
+            getProductInfo = products.find(product =>
+                product.id === parseInt(getProductId)
+            );
+        }
+
+        if (getProductInfo) {
+            setImageValue({
+                src: imageElement.src,
+                name: getProductInfo?.name,
+                price: getProductInfo?.price,
+            });
+        }
     }
 
     return (
@@ -60,8 +76,6 @@ export default function ProductList(props) {
 
             {isModalActive && (
                 <Modal
-                    imageValue={imageValue}
-                    isOpen={() => setIsModalActive(true)}
                     onClose={() => setIsModalActive(false)}
                     portalClassName="body"
                     classNameWrapper="product_list_row"
@@ -95,3 +109,4 @@ export default function ProductList(props) {
     )
 }
 
+export default ProductList;

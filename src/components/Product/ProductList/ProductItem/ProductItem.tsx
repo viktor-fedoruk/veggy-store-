@@ -1,7 +1,16 @@
-import { useState } from "react";
-import './ProductItem.css';
+import React, {FC, useState} from "react";
+import { iCartProducts } from "../../../../../types/data";
+import "./ProductItem.css";
 
-export default function ProductItem(props) {
+interface ProductItemProps {
+    product: iCartProducts,
+    cartProducts: iCartProducts[],
+    setCartProducts: (productList: iCartProducts[]) => void,
+    zoomProductImage: (e: React.MouseEvent<HTMLElement>) => void,
+    setIsCartShakingAnimation: (isShaking: boolean) => void,
+}
+
+const ProductItem: FC <ProductItemProps> = (props) => {
     const {
         product,
         cartProducts,
@@ -10,8 +19,8 @@ export default function ProductItem(props) {
         setIsCartShakingAnimation,
     } = props;
 
-    const [count, setCount] = useState(1);
-    const [buttonText, setButtonText] = useState("ADD TO CART");
+    const [count, setCount] = useState<number>(1);
+    const [buttonText, setButtonText] = useState<string>("ADD TO CART");
 
     function handleChangeButtonText() {
         setButtonText("ADDED");
@@ -33,8 +42,8 @@ export default function ProductItem(props) {
         setCount(count - 1);
     };
 
-    function handleSetProductQuantity(e) {
-        setCount(e.target.value);
+    function handleSetProductQuantity(e: React.ChangeEvent<HTMLInputElement>) {
+        setCount(parseInt(e.target.value));
     }
 
     function addToCart() {
@@ -56,8 +65,8 @@ export default function ProductItem(props) {
 
             cartProducts[productIndexInCartArray] = {
                 ...cartProducts[productIndexInCartArray],
-                quantity: productInCart.quantity + count,
-                sum: (productInCart.quantity + count) * productInCart.price,
+                quantity: (productInCart.quantity ?? 0) + count,
+                sum: ((productInCart.quantity ?? 0) + count) * productInCart.price,
             };
 
             setCartProducts([
@@ -67,7 +76,7 @@ export default function ProductItem(props) {
     }
 
     return (
-        <li className="productItem" id={product.id}>
+        <li className="productItem" id={product.id.toString()}>
             <div
                 onClick={zoomProductImage}
                 className="productImg"
@@ -120,3 +129,4 @@ export default function ProductItem(props) {
     )
 }
 
+export default ProductItem;

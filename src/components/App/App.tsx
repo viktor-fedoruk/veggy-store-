@@ -1,19 +1,20 @@
-import { useState } from 'react';
-import useGetProducts from "./useGetProducts.js";
-import Header from '../Header/Header.jsx';
-import ProductList from '../Product/ProductList/ProductList.jsx';
-import Spinner from "../Spinner/Spinner.jsx";
-import './App.css';
-import '../Header/HeaderCart/CartList/CartList.css';
+import { FC, useState } from "react";
+import useGetProducts from "./useGetProducts";
+import Header from "../Header/Header";
+import ProductList from "../Product/ProductList/ProductList";
+import Spinner from "../Spinner/Spinner";
+import { iCartProducts } from "../../../types/data";
+import "./App.css";
+import "../Header/HeaderCart/CartList/CartList.css";
 
-export default function App() {
-    const [isCartShakingAnimation, setIsCartShakingAnimation] = useState(false);
-    const [headerCartProducts, setHeaderCartProducts] = useState([]);
-    const [searchedProductName, setSearchedProductName] = useState('');
-    const [isOpenHeaderCartModal, setIsOpenHeaderCartModal] = useState(false);
+const App: FC = () => {
+    const [isCartShakingAnimation, setIsCartShakingAnimation] = useState<boolean>(false);
+    const [headerCartProducts, setHeaderCartProducts] = useState<iCartProducts[]>([]);
+    const [searchedProductName, setSearchedProductName] = useState<string>('');
+    const [isOpenHeaderCartModal, setIsOpenHeaderCartModal] = useState<boolean>(false);
     const [products, isLoadingProducts] = useGetProducts();
 
-    function handleChangeHeaderSearchBarValue(e) {
+    function handleChangeHeaderSearchBarValue(e: React.ChangeEvent<HTMLInputElement>): void {
         setSearchedProductName(e.target.value);
     }
 
@@ -45,3 +46,5 @@ export default function App() {
         </div>
     )
 }
+
+export default App;
