@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import iCartProducts from "../../../types/data";
+import { iCartProducts } from "../../../types/data";
 
 export default function useGetProducts() {
     const [isLoadingProducts, setIsLoadingProducts] = useState<boolean>(false);
     const [products, setProducts] = useState<iCartProducts[]>([]);
 
-    useEffect((): void => {
+    useEffect(() => {
         const getUrl = async () => {
             try {
                 setIsLoadingProducts(true);

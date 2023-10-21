@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react";
+import { FC, useState, MouseEvent, ChangeEvent } from "react";
 import { iCartProducts } from "../../../../../types/data";
 import "./ProductItem.css";
 
@@ -6,11 +6,11 @@ interface ProductItemProps {
     product: iCartProducts,
     cartProducts: iCartProducts[],
     setCartProducts: (productList: iCartProducts[]) => void,
-    zoomProductImage: (e: React.MouseEvent<HTMLElement>) => void,
+    zoomProductImage: (e: MouseEvent<HTMLElement>) => void,
     setIsCartShakingAnimation: (isShaking: boolean) => void,
 }
 
-const ProductItem: FC <ProductItemProps> = (props) => {
+const ProductItem: FC<ProductItemProps> = (props) => {
     const {
         product,
         cartProducts,
@@ -42,7 +42,7 @@ const ProductItem: FC <ProductItemProps> = (props) => {
         setCount(count - 1);
     };
 
-    function handleSetProductQuantity(e: React.ChangeEvent<HTMLInputElement>) {
+    function handleSetProductQuantity(e: ChangeEvent<HTMLInputElement>) {
         setCount(parseInt(e.target.value));
     }
 
@@ -120,7 +120,7 @@ const ProductItem: FC <ProductItemProps> = (props) => {
                 <button
                     type="button"
                     onClick={handleChangeButtonText}
-                    className={`addToCart ${buttonText ===  "ADD TO CART" ? "" : "active"}`}
+                    className={`addToCart ${buttonText === "ADD TO CART" ? "" : "active"}`}
                 >
                     {buttonText}
                 </button>

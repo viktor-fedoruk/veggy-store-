@@ -1,18 +1,18 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Modal from "../../../Modal/Modal"
 import { iCartProducts } from "../../../../../types/data";
 import "./CartList.css";
 import "../HeaderCart.css";
 import emptyCartImg from "../../../../../public/img/empty-cart.png";
 
-interface CartListProps {
+interface iCartListProps {
     isOpenHeaderCartModal: boolean,
     setIsOpenHeaderCartModal: (isOpen: boolean) => void,
     headerCartProducts: iCartProducts[],
     setHeaderCartProducts: (productList: iCartProducts[]) => void,
 }
 
-const CartList: FC <CartListProps> = (props) => {
+const CartList: FC<iCartListProps> = (props) => {
     const {
         isOpenHeaderCartModal,
         setIsOpenHeaderCartModal,

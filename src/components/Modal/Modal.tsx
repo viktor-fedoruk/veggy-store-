@@ -1,7 +1,7 @@
-import React, { FC, ReactNode, useEffect, useRef } from "react";
+import { FC, ReactNode, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
-interface ModalProps {
+interface iModalProps {
     onClose: (value: boolean) => void;
     children: ReactNode,
     portalClassName?: string,
@@ -9,7 +9,7 @@ interface ModalProps {
     classNameContent?: string,
 }
 
-const Modal: FC <ModalProps> = (props) => {
+const Modal: FC<iModalProps> = (props) => {
     const {
         onClose,
         children,

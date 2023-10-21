@@ -1,11 +1,11 @@
-import React, { FC, useState } from "react";
+import { FC, useState, MouseEvent } from "react";
 import ProductItem from "./ProductItem/ProductItem";
 import Modal from "../../Modal/Modal";
-import { iCartProducts, imageSrc } from "../../../../types/data";
+import { iCartProducts, iImageInfo } from "../../../../types/data";
 import "./ProductList.css";
 import NoFoundProductImg from "../../../../public/img/no-product-found.png";
 
-interface ProductListProps {
+interface iProductListProps {
     products: iCartProducts[],
     searchedProductName: string,
     cartProducts: iCartProducts[],
@@ -13,7 +13,7 @@ interface ProductListProps {
     setIsCartShakingAnimation: (isShaking: boolean) => void,
 }
 
-const ProductList: FC <ProductListProps> = (props) => {
+const ProductList: FC<iProductListProps> = (props) => {
     const {
         products,
         searchedProductName,
@@ -23,10 +23,10 @@ const ProductList: FC <ProductListProps> = (props) => {
     } = props;
 
     const [isModalActive, setIsModalActive] = useState<boolean>(false);
-    const [imageValue, setImageValue] = useState<imageSrc>({ src: "", name: "", price: null });
+    const [imageValue, setImageValue] = useState<iImageInfo>({ src: "", name: "", price: null });
     const filterProductsItem: iCartProducts[] = products.filter(product => product.name.toLowerCase().startsWith(searchedProductName.toLowerCase()));
 
-    function zoomProductImage (e: React.MouseEvent<HTMLElement>): void {
+    function zoomProductImage (e: MouseEvent<HTMLElement>): void {
         setIsModalActive(isModalActive => !isModalActive);
         const imageElement = e.target as HTMLImageElement;
 

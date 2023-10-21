@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import useWindowWidth from "../../../hooks/useWindowResize";
 import HeaderLogo from "./HeaderLogo/HeaderLogo";
 import HeaderSearchBar from "./HeaderSearchBar/HeaderSerchBar";
@@ -6,19 +6,19 @@ import HeaderCart from "./HeaderCart/HeaderCart";
 import { iCartProducts } from "../../../types/data";
 import "./Header.css";
 
-interface HeaderProps {
+interface iHeaderProps {
     headerCartProducts: iCartProducts[],
     setHeaderCartProducts: (productList: iCartProducts[]) => void,
     isOpenHeaderCartModal: boolean,
     setIsOpenHeaderCartModal: (isOpen: boolean) => void,
     isCartShakingAnimation: boolean,
     setIsCartShakingAnimation: (isShaking: boolean) => void,
-    onChangeHeaderSearchBarValue: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    onChangeHeaderSearchBarValue: (e: ChangeEvent<HTMLInputElement>) => void,
     headerSearchBarValue: string,
     setHeaderSearchBarValue: (value: string) => void,
 }
 
-const Header: FC <HeaderProps> = (props) => {
+const Header: FC<iHeaderProps> = (props) => {
     const {
         headerCartProducts,
         setHeaderCartProducts,
@@ -32,7 +32,7 @@ const Header: FC <HeaderProps> = (props) => {
     } = props;
 
     const [isOpenSearchBar, setIsOpenSearchBar] = useState<boolean>(true);
-    const width: number = useWindowWidth();
+    const width = useWindowWidth();
     const isMobile: boolean = width <= 480;
 
     useEffect((): void => {

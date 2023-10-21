@@ -8,7 +8,7 @@ export interface iCartProducts {
     sum?: number;
 }
 
-export interface imageSrc {
+export interface iImageInfo {
     src: string,
     name: string,
     price: null | number,

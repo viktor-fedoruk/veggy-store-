@@ -14,7 +14,7 @@ interface HeaderCartProps {
     setIsCartShakingAnimation: (isShaking: boolean) => void,
 }
 
-const HeaderCart: FC <HeaderCartProps> = (props) => {
+const HeaderCart: FC<HeaderCartProps> = (props) => {
     const {
         headerCartProducts,
         setHeaderCartProducts,
@@ -24,7 +24,7 @@ const HeaderCart: FC <HeaderCartProps> = (props) => {
         setIsCartShakingAnimation,
     } = props;
 
-    const productQuantity: number = headerCartProducts.length;
+    const productQuantity = headerCartProducts.length;
     const getEachProductSum: (number | undefined)[] = headerCartProducts.map(product => product.sum);
     const getAllProductSum: number | undefined = getEachProductSum.reduce((sum, current) => {
         if (typeof sum === "number") {
@@ -33,6 +33,7 @@ const HeaderCart: FC <HeaderCartProps> = (props) => {
             return sum;
         }
     }, 0);
+
     const width: number = useWindowWidth();
 
     function handleToggleIsOpenCartList(): void {

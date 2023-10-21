@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { ChangeEvent, FC } from "react";
 import "./HeaderSearchBar.css";
 import backArrow from "../../../../public/img/back-arrow.png";
 
@@ -7,12 +7,12 @@ interface HeaderSearchBarProps {
     onSetOpenSearchBar: (isOpen: boolean) => void,
     isOpenSearchBar: boolean,
     onHandleIsOpenSearchBar: () => void,
-    onChangeHeaderSearchBarValue: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    onChangeHeaderSearchBarValue: (e: ChangeEvent<HTMLInputElement>) => void,
     headerSearchBarValue: string,
     setHeaderSearchBarValue: (value: string) => void,
 }
 
-const HeaderSearchBar: FC <HeaderSearchBarProps> = (props) => {
+const HeaderSearchBar: FC<HeaderSearchBarProps> = (props) => {
     const {
         width,
         onSetOpenSearchBar,
