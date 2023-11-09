@@ -1,49 +1,14 @@
-import { FC, useState } from "react";
-import useGetProducts from "./useGetProducts";
-import Header from "../Header/Header";
-import ProductList from "../Product/ProductList/ProductList";
-import Spinner from "../Spinner/Spinner";
-import { iCartProducts } from "../../../types/data";
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Home from "../Home/Home";
 import "../Header/HeaderCart/CartList/CartList.css";
+import Checkout from "../Routes/Checkout";
 
-const App: FC = () => {
-    const [isCartShakingAnimation, setIsCartShakingAnimation] = useState<boolean>(false);
-    const [headerCartProducts, setHeaderCartProducts] = useState<iCartProducts[]>([]);
-    const [searchedProductName, setSearchedProductName] = useState<string>('');
-    const [isOpenHeaderCartModal, setIsOpenHeaderCartModal] = useState<boolean>(false);
-    const [products, isLoadingProducts] = useGetProducts();
-
-    function handleChangeHeaderSearchBarValue(e: React.ChangeEvent<HTMLInputElement>): void {
-        setSearchedProductName(e.target.value);
-    }
-
+const App = () => {
     return (
-        <div className="container">
-            <Header
-                onChangeHeaderSearchBarValue={handleChangeHeaderSearchBarValue}
-                isOpenHeaderCartModal={isOpenHeaderCartModal}
-                setIsOpenHeaderCartModal={setIsOpenHeaderCartModal}
-                headerCartProducts={headerCartProducts}
-                setHeaderCartProducts={setHeaderCartProducts}
-                setIsCartShakingAnimation={setIsCartShakingAnimation}
-                isCartShakingAnimation={isCartShakingAnimation}
-                headerSearchBarValue={searchedProductName}
-                setHeaderSearchBarValue={setSearchedProductName}
-            />
-
-            {isLoadingProducts ? (
-                <Spinner />
-            ) : (
-                <ProductList
-                    searchedProductName={searchedProductName}
-                    products={products}
-                    cartProducts={headerCartProducts}
-                    setCartProducts={setHeaderCartProducts}
-                    setIsCartShakingAnimation={setIsCartShakingAnimation}
-                />
-            )}
-        </div>
+        <Routes>
+            <Route path="/veggy-store-" element={<Home />} />
+            <Route path="/veggy-store-/checkout/1" element={<Checkout />} />
+        </Routes>
     )
 }
 

@@ -154,6 +154,10 @@
     cursor: pointer;
 }
 
+.checkout_button:hover {
+    background: #e1ba1b;
+}
+
 @keyframes outAnimation {
     0% {
         opacity: 1;

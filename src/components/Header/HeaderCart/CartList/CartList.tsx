@@ -4,6 +4,7 @@ import { iCartProducts } from "../../../../../types/data";
 import "./CartList.css";
 import "../HeaderCart.css";
 import emptyCartImg from "../../../../../public/img/empty-cart.png";
+import {useNavigate} from "react-router-dom";
 
 interface iCartListProps {
     isOpenHeaderCartModal: boolean,
@@ -19,6 +20,12 @@ const CartList: FC<iCartListProps> = (props) => {
         headerCartProducts,
         setHeaderCartProducts,
     } = props;
+
+    const navigate = useNavigate();
+
+    const proceedToForm = () => {
+        navigate("/veggy-store-/checkout/1");
+    }
 
     return (
         <>
@@ -93,9 +100,9 @@ const CartList: FC<iCartListProps> = (props) => {
                         {headerCartProducts.length > 0 && (
                             <div className="checkout_button_wrapper">
                                 <button
+                                    onClick={proceedToForm}
                                     className="checkout_button"
                                     type="button"
-                                    disabled
                                 >
                                     PROCEED TO CHECKOUT
                                 </button>
