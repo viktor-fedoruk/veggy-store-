@@ -10,7 +10,7 @@ export default function useGetProducts() {
             try {
                 setIsLoadingProducts(true);
 
-                const response = await fetch('http://localhost:3001/vegs');
+                const response = await fetch("http://localhost:3001/vegs");
 
                 if (!response.ok) {
                     const message = `An error has occured: ${response.status}`;
@@ -30,6 +30,6 @@ export default function useGetProducts() {
         getUrl();
     }, []);
 
-    return [products, isLoadingProducts] as const
+    return [products, isLoadingProducts] as const;
 }
 
