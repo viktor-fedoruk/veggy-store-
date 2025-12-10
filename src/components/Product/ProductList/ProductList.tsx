@@ -36,7 +36,7 @@ const ProductList: FC<iProductListProps> = (props) => {
         let getProductInfo;
         if (getProductId) {
             getProductInfo = products.find(product =>
-                product.id === parseInt(getProductId)
+                String(product.id) === String(getProductId)
             );
         }
 

@@ -47,7 +47,7 @@ const HeaderCart: FC<HeaderCartProps> = (props) => {
                     <strong>{productQuantity}</strong>
                 </li>
 
-                <li className='cart_item_sum' >Sub Total :
+                <li className="cart_item_sum" >Sub Total :
                     <strong>{getAllProductSum}</strong>
                 </li>
             </ul>
@@ -61,7 +61,7 @@ const HeaderCart: FC<HeaderCartProps> = (props) => {
                     <span className="cart_count">{productQuantity}</span>
                 )}
 
-                <span className='cart_icon'>
+                <span className="cart_icon">
                     <img
                         src={CartImg}
                         onClick={handleToggleIsOpenCartList}
